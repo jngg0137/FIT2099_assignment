@@ -6,7 +6,7 @@ package game;
  * Font: Georgia11
  * Created by:
  * @author Adrian Kristanto
- * Modified by:
+ * Modified by: Muhammad Hafiz Idlan Bin Hakimi
  */
 public class FancyMessage {
     public static String TITLE =
