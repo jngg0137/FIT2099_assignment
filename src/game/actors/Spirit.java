@@ -20,7 +20,7 @@ import java.util.Map;
  * The spirit wanders aimlessly and only attacks enemies that are within their surroundings,
  * never chase.
  *
- * @author Ng Jiunn CHieh 33590850
+ * @author Ng Jiunn Chieh 33590850
  */
 public class Spirit extends Actor {
     private Map<Integer, Behaviour> behaviours = new HashMap<>();
