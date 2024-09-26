@@ -13,5 +13,9 @@ public enum Ability {
     /**
      * Indicates whether an actor or a ground can be burnt
      */
-    IMMUNE_TO_BURNING
+    IMMUNE_TO_BURNING,
+    /**
+     * Indicates whether an actor can be poisoned
+     */
+    IMMUNE_TO_POISON
 }

@@ -3,6 +3,7 @@ package game.effects;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.actors.StatusEffect;
 import edu.monash.fit2099.engine.positions.Location;
+import game.actors.Ability;
 
 /**
  * Class which stores details on poison effect
@@ -33,7 +34,7 @@ public class Poison extends StatusEffect {
      */
     @Override
     public void tick(Location location, Actor actor){
-        if (effectDuration != 0) {
+        if (!actor.hasCapability(Ability.IMMUNE_TO_POISON) && effectDuration != 0) {
             actor.hurt(damagePerTick);
             System.out.println(actor + " takes " + damagePerTick + " poison damage.");
             if (!actor.isConscious()) {
