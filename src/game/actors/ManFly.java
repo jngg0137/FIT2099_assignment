@@ -11,6 +11,7 @@ import game.actions.AttackAction;
 import game.behaviours.AttackBehaviour;
 import game.behaviours.FollowBehaviour;
 import game.behaviours.WanderBehaviour;
+import game.weapons.Stinger;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,7 +29,7 @@ public class ManFly extends Actor {
     public ManFly(){
         super("Man-fly",'%',50);
         this.behaviours.put(999, new WanderBehaviour());
-//        this.setIntrinsicWeapon(new BareFist()); to replace with sting attack
+        this.setIntrinsicWeapon(new Stinger());
     }
 
     /**
