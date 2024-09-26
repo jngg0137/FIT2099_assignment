@@ -24,7 +24,6 @@ import game.weapons.ShortSword;
  * Created by:
  * @author Adrian Kristanto
  * Modified by:Muhammad Hafiz Idlan Bin Hakimi
- *
  */
 public class Application {
 
