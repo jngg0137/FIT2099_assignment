@@ -14,7 +14,7 @@ public class LifeSteal implements WeaponArt {
     private static final int HEAL_AMOUNT = 20;
 
     @Override
-    public String use(Actor attacker, Actor target, WeaponItem weapon) {
+    public String use(Actor attacker, Actor target, WeaponItem weapon, GameMap map) {
         if (attacker instanceof Player) {
             Player player = (Player) attacker;
             if (player.getMana() >= MANA_COST) {
