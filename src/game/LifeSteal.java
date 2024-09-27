@@ -5,9 +5,9 @@ import edu.monash.fit2099.engine.items.*;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import edu.monash.fit2099.engine.positions.Location;
-
 import java.util.Random;
-
+import game.actors.Player;
+import game.weapons.WeaponItem;
 
 public class LifeSteal implements WeaponArt {
     private static final int MANA_COST = 10;

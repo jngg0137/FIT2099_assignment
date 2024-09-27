@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.weapons.Weapon;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.positions.Exit;
 import java.util.Random;
+import game.weapons.WeaponItem
 
 
 public class QuickStep implements WeaponArt {

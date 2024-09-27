@@ -71,4 +71,8 @@ public abstract class WeaponItem extends Item implements Weapon {
         return actions;
     }
 
+    public int getDamage() {
+        return damage;
+    }
+
 }
