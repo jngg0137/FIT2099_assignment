@@ -56,9 +56,9 @@ public class FollowBehaviour implements Behaviour {
             return null;
         }
 
-        int lowestDistance = distance(validExits.getFirst().getDestination(), there);
-        Location bestDestination = validExits.getFirst().getDestination();
-        Exit bestExit = validExits.getFirst();
+        int lowestDistance = distance(validExits.get(0).getDestination(), there);
+        Location bestDestination = validExits.get(0).getDestination();
+        Exit bestExit = validExits.get(0);
 
         for (Exit validExit : validExits)
         {
