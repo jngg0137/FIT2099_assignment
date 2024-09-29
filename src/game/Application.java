@@ -18,6 +18,10 @@ import game.consumables.FlaskOfRejuvenation;
 import game.consumables.ShadowtreeFragment;
 import game.weapons.GreatKnife;
 import game.weapons.ShortSword;
+import game.weapons.WeaponItem;
+import game.LifeSteal;
+import game.QuickStep;
+import game.WeaponArt;
 
 /**
  * The main class to start the game.
@@ -73,6 +77,12 @@ public class Application {
         ShadowtreeFragment shadowtreeFragment3 = new ShadowtreeFragment("Shadowtree Fragment",'e');
         ShadowtreeFragment shadowtreeFragment4 = new ShadowtreeFragment("Shadowtree Fragment",'e');
         ShadowtreeFragment shadowtreeFragment5 = new ShadowtreeFragment("Shadowtree Fragment",'e');
+        WeaponItem greatKnifeWithLifesteal = new WeaponItem("Great Knife", 'G', 25, "slashes", 80, new Lifesteal());
+        WeaponItem greatKnifeWithQuickstep = new WeaponItem("Great Knife", 'G', 25, "slashes", 80, new QuickStep());
+        WeaponItem shortSwordWithQuickstep = new WeaponItem("Shortsword", 'S', 30, "stabs", 85, new QuickStep());
+        WeaponItem shortSwordWithLifesteal = new WeaponItem("Shortsword", 'K', 30, "slashes", 75, new Lifesteal());
+
+
 
         world.addPlayer(player, gameMap.at(7, 4));
 

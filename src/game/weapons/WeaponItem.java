@@ -6,7 +6,9 @@ import edu.monash.fit2099.engine.items.*;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.Weapon;
+import game.WeaponArt;
 import game.actions.AttackAction;
+import game.actors.Player;
 
 import java.util.Random;
 
@@ -21,6 +23,7 @@ public abstract class WeaponItem extends Item implements Weapon {
     private final String verb;
     private float damageMultiplier;
     private int strengthRequirement;
+    private WeaponArt weaponArt;
 
     /**
      * Constructor.
@@ -37,6 +40,7 @@ public abstract class WeaponItem extends Item implements Weapon {
         this.verb = verb;
         this.hitRate = hitRate;
         this.damageMultiplier = DEFAULT_DAMAGE_MULTIPLIER;
+        this.weaponArt = weaponArt;
     }
 
     /**
@@ -53,10 +57,21 @@ public abstract class WeaponItem extends Item implements Weapon {
             return attacker + " misses " + target + ".";
         }
 
+        // Check if weapon art can be used
+        if (weaponArt != null && attacker instanceof Player) {
+            Player player = (Player) attacker;
+            if (player.getMana() >= weaponArt.getManaCost()) {
+                // If player has enough mana, use weapon art
+                return weaponArt.use(attacker, target, this,map);
+            }
+        }
+
+        // Otherwise, perform normal attack
         target.hurt(Math.round(damage * damageMultiplier));
 
         return String.format("%s %s %s for %d damage", attacker, verb, target, damage);
     }
+
 
     /**
      * List of allowable actions that the item allows its owner do to other actor.

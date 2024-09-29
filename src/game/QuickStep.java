@@ -16,6 +16,7 @@ import game.weapons.WeaponItem;
 public class QuickStep implements WeaponArt {
 
     private Actor target;
+    private static final int MANA_COST = 0;
     @Override
     public String use(Actor attacker, Actor actor, WeaponItem weapon, GameMap map) {
         // Deal damage to the target
@@ -39,6 +40,11 @@ public class QuickStep implements WeaponArt {
 
 
         return "Quickstep activated! Player moved to a new location after attacking.";
+    }
+
+    @Override
+    public int getManaCost() {
+        return MANA_COST;
     }
 }
 

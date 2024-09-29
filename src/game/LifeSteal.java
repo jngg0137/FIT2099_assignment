@@ -27,5 +27,10 @@ public class LifeSteal implements WeaponArt {
         return "Not enough mana for Lifesteal.";
     }
 
+    @Override
+    public int getManaCost() {
+        return MANA_COST;
+    }
+
 
 }
