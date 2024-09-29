@@ -43,7 +43,7 @@ public class Stinger extends IntrinsicWeapon {
 
         //chance for the attack to poison the target
         if ((rand.nextInt(100) < poisonChance)) {
-            attacker.addStatusEffect(poison);
+            target.addStatusEffect(poison);
             ret += "\n";
             ret += attacker + " poisons " + target + ".";
         }
