@@ -9,6 +9,7 @@ import edu.monash.fit2099.engine.positions.FancyGroundFactory;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.World;
 import game.actors.FurnaceGolem;
+import game.actors.ManFly;
 import game.actors.Player;
 import game.actors.Spirit;
 import game.grounds.*;
@@ -176,6 +177,14 @@ public class Application {
         beluratTowerGameMap.at(20,2).addItem(graveyardSpirit);
         beluratTowerGameMap.at(25,2).addItem(graveyardSpirit);
         beluratTowerGameMap.at(20,9).addItem(graveyardSpirit);
+
+        //Add 5 graveyards to Belurat Sewer
+        Spawner graveyardManFly = new Spawner(new Graveyard(), new ManFly(), 15);
+        beluratSewersGameMap.at(11,4).addItem(graveyardManFly);
+        beluratSewersGameMap.at(13,4).addItem(graveyardManFly);
+        beluratSewersGameMap.at(19,4).addItem(graveyardManFly);
+        beluratSewersGameMap.at(22,4).addItem(graveyardManFly);
+        beluratSewersGameMap.at(19,6).addItem(graveyardManFly);
 
         // Start the game
         world.run();
