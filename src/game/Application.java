@@ -10,11 +10,14 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.World;
 import game.actors.FurnaceGolem;
 import game.actors.Player;
+import game.actors.Spirit;
 import game.grounds.*;
 import game.consumables.FlaskOfHealing;
 import game.consumables.FlaskOfRejuvenation;
 import game.consumables.ShadowtreeFragment;
 import game.items.GateItem;
+import game.items.Graveyard;
+import game.items.Spawner;
 import game.weapons.GreatKnife;
 import game.weapons.ShortSword;
 
@@ -165,6 +168,14 @@ public class Application {
         // Add gate to the Belurat maps
         beluratTowerGameMap.at(3, 3).addItem(gateToGravesite);
         beluratSewersGameMap.at(0, 4).addItem(gateToGravesite);
+
+        // Add 5 graveyards to Belurat Tower
+        Spawner graveyardSpirit = new Spawner(new Graveyard(),new Spirit(),20);
+        beluratTowerGameMap.at(20,1).addItem(graveyardSpirit);
+        beluratTowerGameMap.at(25,1).addItem(graveyardSpirit);
+        beluratTowerGameMap.at(20,2).addItem(graveyardSpirit);
+        beluratTowerGameMap.at(25,2).addItem(graveyardSpirit);
+        beluratTowerGameMap.at(20,9).addItem(graveyardSpirit);
 
         // Start the game
         world.run();
