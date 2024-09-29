@@ -23,7 +23,7 @@ import java.util.Map;
  *
  * @author Ng Jiunn Chieh 33590850
  */
-public class ManFly extends Actor {
+public class ManFly extends Actor implements Spawnable{
     private Map<Integer, Behaviour> behaviours = new HashMap<>();
 
     public ManFly(){
@@ -67,5 +67,15 @@ public class ManFly extends Actor {
             actions.add(new AttackAction(this, direction));
         }
         return actions;
+    }
+
+    /**
+     * Method that returns new object of this actor
+     *
+     * @return new object of this actor
+     */
+    @Override
+    public Actor newActor() {
+        return new ManFly();
     }
 }

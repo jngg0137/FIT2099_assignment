@@ -22,7 +22,7 @@ import java.util.Map;
  *
  * @author Ng Jiunn Chieh 33590850
  */
-public class Spirit extends Actor {
+public class Spirit extends Actor implements Spawnable{
     private Map<Integer, Behaviour> behaviours = new HashMap<>();
 
     /**
@@ -68,5 +68,15 @@ public class Spirit extends Actor {
             actions.add(new AttackAction(this, direction));
         }
         return actions;
+    }
+
+    /**
+     * Method that returns new object of this actor
+     *
+     * @return new object of this actor
+     */
+    @Override
+    public Actor newActor() {
+        return new Spirit();
     }
 }
