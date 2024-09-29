@@ -10,8 +10,11 @@ import game.actors.Player;
 import game.weapons.WeaponItem;
 
 public class LifeSteal implements WeaponArt {
-    private static final int MANA_COST = 10;
-    private static final int HEAL_AMOUNT = 20;
+    private static int MANA_COST = 10;
+    private static int HEAL_AMOUNT = 20;
+
+
+
 
     @Override
     public String use(Actor attacker, Actor target, WeaponItem weapon, GameMap map) {
