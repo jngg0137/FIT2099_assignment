@@ -45,13 +45,11 @@ public class Spawner extends Item {
                     if(exitLocation.containsAnActor()){
                         i += 1;
                     } else {
-                        System.out.println("spawn on surrounding");
                         exitLocation.addActor(actorToSpawn.newActor());
                         continueLooking = false;
                     }
                 }
             } else {
-                System.out.println("spawn on graveyard");
                 location.addActor(actorToSpawn.newActor());
             }
         }
