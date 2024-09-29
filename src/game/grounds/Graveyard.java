@@ -8,7 +8,7 @@ import edu.monash.fit2099.engine.items.Item;
 public class Graveyard extends Item {
 
     /**
-     * Constructor.
+     * Constructor
      *
      */
     public Graveyard() {
