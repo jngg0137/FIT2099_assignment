@@ -6,6 +6,8 @@ import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.positions.Exit;
 
 import java.util.ArrayList;
+import java.util.Random;
+
 import game.weapons.WeaponItem;
 
 
@@ -13,6 +15,8 @@ public class QuickStep implements WeaponArt {
     private static final int MANA_COST = 0;
     @Override
     public String use(Actor attacker, Actor target, WeaponItem weapon, GameMap map) {
+        Random random = new Random();
+
         if(!map.contains(attacker) || !map.contains(target))
             return null;
 
@@ -26,7 +30,13 @@ public class QuickStep implements WeaponArt {
             }
         }
 
-        return "Quickstep activated! Player moved to a new location after attacking.";
+        if (validExits.isEmpty()) {
+            return "Quickstep activated, but no valid spaces to move to.";
+        }
+
+        Location moveTo = validExits.get(random.nextInt(validExits.size())).getDestination();
+        map.moveActor(attacker,moveTo);
+        return "Quickstep activated! Player moved to " + moveTo.toString() + " after attacking.";
     }
 
     @Override
