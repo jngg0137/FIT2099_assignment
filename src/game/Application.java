@@ -77,10 +77,10 @@ public class Application {
         ShadowtreeFragment shadowtreeFragment3 = new ShadowtreeFragment("Shadowtree Fragment",'e');
         ShadowtreeFragment shadowtreeFragment4 = new ShadowtreeFragment("Shadowtree Fragment",'e');
         ShadowtreeFragment shadowtreeFragment5 = new ShadowtreeFragment("Shadowtree Fragment",'e');
-        WeaponItem greatKnifeWithLifesteal = new WeaponItem("Great Knife", 'G', 25, "slashes", 80, new Lifesteal());
+        WeaponItem greatKnifeWithLifesteal = new WeaponItem("Great Knife", 'G', 25, "slashes", 80, new LifeSteal());
         WeaponItem greatKnifeWithQuickstep = new WeaponItem("Great Knife", 'G', 25, "slashes", 80, new QuickStep());
         WeaponItem shortSwordWithQuickstep = new WeaponItem("Shortsword", 'S', 30, "stabs", 85, new QuickStep());
-        WeaponItem shortSwordWithLifesteal = new WeaponItem("Shortsword", 'K', 30, "slashes", 75, new Lifesteal());
+        WeaponItem shortSwordWithLifesteal = new WeaponItem("Shortsword", 'K', 30, "slashes", 75, new LifeSteal());
 
 
 
@@ -96,6 +96,10 @@ public class Application {
         gameMap.at(14,8).addItem(shadowtreeFragment3);
         gameMap.at(13,3).addItem(shadowtreeFragment4);
         gameMap.at(15,6).addItem(shadowtreeFragment5);
+        gameMap.at(18,5).addItem(shortSwordWithLifesteal);
+        gameMap.at(18,5).addItem(shortSwordWithQuickstep);
+        gameMap.at(18,5).addItem(greatKnifeWithLifesteal);
+        gameMap.at(18,5).addItem(greatKnifeWithQuickstep);
 
         world.run();
         System.out.println(FancyMessage.YOU_DIED);

@@ -3,6 +3,7 @@ package game.weapons;
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Location;
+import game.WeaponArt;
 import game.actors.ExtraActorAttributes;
 
 /**
@@ -22,8 +23,8 @@ public class GreatKnife extends WeaponItem{
      * @param hitRate             the probability/chance to hit the target.
      * @param strengthRequirement the strength needed to pick up the weapon
      */
-    public GreatKnife(String name, char displayChar, int damage, String verb, int hitRate, int strengthRequirement) {
-        super(name, displayChar, damage, verb, hitRate);
+    public GreatKnife(String name, char displayChar, int damage, String verb, int hitRate, int strengthRequirement, WeaponArt weaponArt) {
+        super(name, displayChar, damage, verb, hitRate, weaponArt);
         this.strengthRequirement = strengthRequirement;
     }
 
