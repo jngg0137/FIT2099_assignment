@@ -10,7 +10,12 @@ import java.util.Random;
 
 import game.weapons.WeaponItem;
 
-
+/**
+ *
+ *
+ * @author
+ * Modifed by: Ng Jiunn Chieh 33590850
+ */
 public class QuickStep implements WeaponArt {
     private static final int MANA_COST = 0;
     @Override

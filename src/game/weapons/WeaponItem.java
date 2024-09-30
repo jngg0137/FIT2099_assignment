@@ -2,19 +2,21 @@ package game.weapons;
 
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
+import edu.monash.fit2099.engine.actors.attributes.BaseActorAttributes;
 import edu.monash.fit2099.engine.items.*;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import game.WeaponArt;
 import game.actions.AttackAction;
-import game.actors.Player;
 
 import java.util.Random;
 
 /**
  * Class representing items that can be used as a weapon.
  * @author Muhammad Haifz Idlan Bin Hakimi
+ * Modified by:
+ * Ng Jiunn Chieh 33590850
  */
 public abstract class WeaponItem extends Item implements Weapon {
     private static final float DEFAULT_DAMAGE_MULTIPLIER = 1.0f;
@@ -51,24 +53,29 @@ public abstract class WeaponItem extends Item implements Weapon {
      */
     @Override
     public String attack(Actor attacker, Actor target, GameMap map) {
+        String ret = "";
         Random rand = new Random();
         if (!(rand.nextInt(100) < this.hitRate)) {
             return attacker + " misses " + target + ".";
         }
 
-        // Check if weapon art can be used
-        if (weaponArt != null && attacker instanceof Player) {
-            Player player = (Player) attacker;
-            if (player.getMana() >= weaponArt.getManaCost()) {
-                // If player has enough mana, use weapon art
-                return weaponArt.use(attacker, target, this,map);
+        // Check if weapon art is present
+        if (weaponArt != null) {
+            // If player has enough mana, use weapon art
+            if (attacker.getAttribute(BaseActorAttributes.MANA) >= weaponArt.getManaCost()) {
+                ret += weaponArt.use(attacker, target, this,map);
+            }
+            else
+            {
+                ret += "Not enough mana available to trigger weapon art!";
             }
         }
 
-        // Otherwise, perform normal attack
+        // Perform normal attack
         target.hurt(Math.round(damage * damageMultiplier));
 
-        return String.format("%s %s %s for %d damage", attacker, verb, target, damage);
+        ret += String.format("\n%s %s %s for %d damage", attacker, verb, target, damage);
+        return ret;
     }
 
 
