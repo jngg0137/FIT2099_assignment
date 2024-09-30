@@ -22,7 +22,6 @@ public abstract class WeaponItem extends Item implements Weapon {
     private int hitRate;
     private final String verb;
     private float damageMultiplier;
-    private int strengthRequirement;
     private WeaponArt weaponArt;
 
     /**

@@ -18,10 +18,6 @@ import game.consumables.FlaskOfRejuvenation;
 import game.consumables.ShadowtreeFragment;
 import game.weapons.GreatKnife;
 import game.weapons.ShortSword;
-import game.weapons.WeaponItem;
-import game.LifeSteal;
-import game.QuickStep;
-import game.WeaponArt;
 
 /**
  * The main class to start the game.
@@ -68,8 +64,8 @@ public class Application {
         }
 
         Player player = new Player("Tarnished", '@', 150);
-        ShortSword shortSword = new ShortSword("Short Sword", '!', 100, "stabs", 75,10);
-        GreatKnife greatKnife = new GreatKnife("Great Knife",'†', 75,"slashes",60,5);
+        ShortSword shortSword = new ShortSword("Short Sword", '!', 100, "stabs", 75,10,null);
+        GreatKnife greatKnife = new GreatKnife("Great Knife",'†', 75,"slashes",60,5,null);
         FlaskOfHealing flaskOfHealing = new FlaskOfHealing("Flask of Healing",'u',5);
         FlaskOfRejuvenation flaskOfRejuvenation = new FlaskOfRejuvenation("Flask of Rejuvenation",'o',3);
         ShadowtreeFragment shadowtreeFragment1 = new ShadowtreeFragment("Shadowtree Fragment",'e');
@@ -77,10 +73,9 @@ public class Application {
         ShadowtreeFragment shadowtreeFragment3 = new ShadowtreeFragment("Shadowtree Fragment",'e');
         ShadowtreeFragment shadowtreeFragment4 = new ShadowtreeFragment("Shadowtree Fragment",'e');
         ShadowtreeFragment shadowtreeFragment5 = new ShadowtreeFragment("Shadowtree Fragment",'e');
-        WeaponItem greatKnifeWithLifesteal = new WeaponItem("Great Knife", 'G', 25, "slashes", 80, new LifeSteal());
-        WeaponItem greatKnifeWithQuickstep = new WeaponItem("Great Knife", 'G', 25, "slashes", 80, new QuickStep());
-        WeaponItem shortSwordWithQuickstep = new WeaponItem("Shortsword", 'S', 30, "stabs", 85, new QuickStep());
-        WeaponItem shortSwordWithLifesteal = new WeaponItem("Shortsword", 'K', 30, "slashes", 75, new LifeSteal());
+        GreatKnife greatKnifeWithLifesteal = new GreatKnife("Great Knife (LifeSteal)", '†', 25, "slashes", 80, 5, new LifeSteal());
+        GreatKnife greatKnifeWithQuickstep = new GreatKnife("Great Knife (Quickstep)", '†', 25, "slashes", 80,5, new QuickStep());
+        ShortSword shortSwordWithQuickstep = new ShortSword("Shortsword (Quickstep)", '!', 30, "stabs", 85, 10,new QuickStep());
 
 
 
@@ -96,10 +91,9 @@ public class Application {
         gameMap.at(14,8).addItem(shadowtreeFragment3);
         gameMap.at(13,3).addItem(shadowtreeFragment4);
         gameMap.at(15,6).addItem(shadowtreeFragment5);
-        gameMap.at(18,5).addItem(shortSwordWithLifesteal);
-        gameMap.at(18,5).addItem(shortSwordWithQuickstep);
-        gameMap.at(18,5).addItem(greatKnifeWithLifesteal);
-        gameMap.at(18,5).addItem(greatKnifeWithQuickstep);
+        gameMap.at(7,8).addItem(shortSwordWithQuickstep);
+        gameMap.at(8,8).addItem(greatKnifeWithLifesteal);
+        gameMap.at(9,8).addItem(greatKnifeWithQuickstep);
 
         world.run();
         System.out.println(FancyMessage.YOU_DIED);
