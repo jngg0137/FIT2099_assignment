@@ -7,9 +7,6 @@ import edu.monash.fit2099.engine.positions.Exit;
 
 import java.util.ArrayList;
 import java.util.Random;
-
-import game.weapons.WeaponItem;
-
 /**
  *
  *
@@ -19,7 +16,7 @@ import game.weapons.WeaponItem;
 public class QuickStep implements WeaponArt {
     private static final int MANA_COST = 0;
     @Override
-    public String use(Actor attacker, Actor target, WeaponItem weapon, GameMap map) {
+    public String use(Actor attacker, Actor target, GameMap map) {
         Random random = new Random();
 
         if(!map.contains(attacker) || !map.contains(target))

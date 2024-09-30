@@ -63,7 +63,7 @@ public abstract class WeaponItem extends Item implements Weapon {
         if (weaponArt != null) {
             // If player has enough mana, use weapon art
             if (attacker.getAttribute(BaseActorAttributes.MANA) >= weaponArt.getManaCost()) {
-                ret += weaponArt.use(attacker, target, this,map);
+                ret += weaponArt.use(attacker, target, map);
             }
             else
             {
