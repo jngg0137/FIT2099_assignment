@@ -91,9 +91,4 @@ public abstract class WeaponItem extends Item implements Weapon {
         actions.add(new AttackAction(otherActor, location.toString(),this));
         return actions;
     }
-
-    public int getDamage() {
-        return damage;
-    }
-
 }
