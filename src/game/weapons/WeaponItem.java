@@ -7,7 +7,7 @@ import edu.monash.fit2099.engine.items.*;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.Weapon;
-import game.WeaponArt;
+import game.weaponarts.WeaponArt;
 import game.actions.AttackAction;
 
 import java.util.Random;

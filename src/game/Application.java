@@ -16,6 +16,8 @@ import game.grounds.Wall;
 import game.consumables.FlaskOfHealing;
 import game.consumables.FlaskOfRejuvenation;
 import game.consumables.ShadowtreeFragment;
+import game.weaponarts.LifeSteal;
+import game.weaponarts.QuickStep;
 import game.weapons.GreatKnife;
 import game.weapons.ShortSword;
 
