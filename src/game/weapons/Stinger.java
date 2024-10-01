@@ -3,6 +3,7 @@ package game.weapons;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
+import game.actors.Ability;
 import game.effects.Poison;
 
 import java.util.Random;
@@ -42,7 +43,7 @@ public class Stinger extends IntrinsicWeapon {
         String ret = String.format("%s %s %s for %d damage", attacker, verb, target, damage);
 
         //chance for the attack to poison the target
-        if ((rand.nextInt(100) < poisonChance)) {
+        if ((rand.nextInt(100) < poisonChance) && !target.hasCapability(Ability.IMMUNE_TO_POISON)) {
             target.addStatusEffect(poison);
             ret += "\n";
             ret += attacker + " poisons " + target + ".";
