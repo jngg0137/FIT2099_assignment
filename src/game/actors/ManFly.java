@@ -13,8 +13,8 @@ import game.behaviours.FollowBehaviour;
 import game.behaviours.WanderBehaviour;
 import game.weapons.Stinger;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Class representing the man-fly NPC
@@ -24,7 +24,7 @@ import java.util.Map;
  * @author Ng Jiunn Chieh 33590850
  */
 public class ManFly extends Actor implements Spawnable{
-    private Map<Integer, Behaviour> behaviours = new HashMap<>();
+    private Map<Integer, Behaviour> behaviours = new TreeMap<>();
 
     public ManFly(){
         super("Man-fly",'%',50);

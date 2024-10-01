@@ -13,8 +13,8 @@ import game.actions.AttackAction;
 import game.behaviours.AttackBehaviour;
 import game.behaviours.FollowBehaviour;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Class representing the Furnace Golem enemy
@@ -23,7 +23,7 @@ import java.util.Map;
  * Modified by : Muhammad Hafiz Idlan Bin Hakimi
  */
 public class FurnaceGolem extends Actor {
-    private Map<Integer, Behaviour> behaviours = new HashMap<>();
+    private Map<Integer, Behaviour> behaviours = new TreeMap<>();
 
     /**
      * Constructor for the FurnaceGolem class

@@ -41,11 +41,15 @@ public class Spawner extends Item {
                 List<Exit> exits = location.getExits();
 
                 while (continueLooking){
-                    Location exitLocation = exits.get(i).getDestination();
-                    if(exitLocation.containsAnActor()){
-                        i += 1;
-                    } else {
-                        exitLocation.addActor(actorToSpawn.newActor());
+                    if (i < exits.size()) {
+                        Location exitLocation = exits.get(i).getDestination();
+                        if (exitLocation.containsAnActor()) {
+                            i += 1;
+                        } else {
+                            exitLocation.addActor(actorToSpawn.newActor());
+                            continueLooking = false;
+                        }
+                    } else{
                         continueLooking = false;
                     }
                 }

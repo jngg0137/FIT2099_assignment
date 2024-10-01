@@ -12,8 +12,8 @@ import game.behaviours.AttackBehaviour;
 import game.behaviours.WanderBehaviour;
 import game.weapons.BareFist;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Class representing the Spirit enemy
@@ -23,7 +23,7 @@ import java.util.Map;
  * @author Ng Jiunn Chieh 33590850
  */
 public class Spirit extends Actor implements Spawnable{
-    private Map<Integer, Behaviour> behaviours = new HashMap<>();
+    private Map<Integer, Behaviour> behaviours = new TreeMap<>();
 
     /**
      * Constructor for the Spirit class
