@@ -2,6 +2,7 @@ package game.effects;
 
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.actors.StatusEffect;
+import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.Location;
 import game.actors.Ability;
 
@@ -11,6 +12,7 @@ import game.actors.Ability;
  * @author Ng Jiunn Chieh 33590850
  */
 public class Poison extends StatusEffect {
+    Display display = new Display();
     private int damagePerTick;
     private int effectDuration;
 
@@ -36,7 +38,7 @@ public class Poison extends StatusEffect {
     public void tick(Location location, Actor actor){
         if (!actor.hasCapability(Ability.IMMUNE_TO_POISON) && effectDuration != 0) {
             actor.hurt(damagePerTick);
-            System.out.println(actor + " takes " + damagePerTick + " poison damage.");
+            display.println(actor + " takes " + damagePerTick + " poison damage.");
             if (!actor.isConscious()) {
                 actor.unconscious(location.map());
             }
