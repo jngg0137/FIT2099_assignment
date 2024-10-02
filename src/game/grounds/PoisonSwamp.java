@@ -9,6 +9,8 @@ import game.effects.Poison;
 /**
  * Represents a PoisonSwamp in the game, a type of ground that poisons actors standing on it.
  * Actors with a specific status are affected by the poison when they are in this location.
+ *
+ * @author Mohamad Kassem Alsabbagh 34640843
  */
 public class PoisonSwamp extends Ground {
 

@@ -10,6 +10,8 @@ import edu.monash.fit2099.engine.positions.Location;
  * related to gates.
  * The GateItem allows dynamic actions to be added and allows these actions to be performed
  * when the item is interacted with in a location.
+ *
+ * @author Mohamad Kassem Alsabbagh 34640843
  */
 public class GateItem extends Item {
     /**
