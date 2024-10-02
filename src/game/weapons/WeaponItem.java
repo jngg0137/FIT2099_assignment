@@ -16,7 +16,7 @@ import java.util.Random;
  * Class representing items that can be used as a weapon.
  * @author Muhammad Haifz Idlan Bin Hakimi
  * Modified by:
- * Ng Jiunn Chieh 33590850
+ * Liew Zhe Xing 32619472
  */
 public abstract class WeaponItem extends Item implements Weapon {
     private static final float DEFAULT_DAMAGE_MULTIPLIER = 1.0f;
