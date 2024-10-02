@@ -9,11 +9,13 @@ import game.effects.Burning;
 /**
  * Represents a ground that is caught on fire
  * @author Muhammad Hafiz Idlan Bin Hakimi
+ * Modified by: Ng Jiunn Chieh 33590850
  */
 public class Fire extends Ground {
 
     private int duration;
     private final Ground previousGround;
+    private final int endEffectDuration = 0;
 
     /**
      * Constructor
@@ -36,14 +38,14 @@ public class Fire extends Ground {
     public void tick(Location location){
 
         Actor actor = location.getActor();
-        if (location.containsAnActor() && !actor.hasCapability(Ability.IMMUNE_TO_BURNING) && duration != 0)
+        if (location.containsAnActor() && !actor.hasCapability(Ability.IMMUNE_TO_BURNING) && duration != endEffectDuration)
         {
             Burning burning = new Burning(5,1,this);
             actor.addStatusEffect(burning);
 
         }
 
-        if (duration == 0)
+        if (duration == endEffectDuration)
         {
             //if the previous ground happens to be Fire, it will be set to fire and continue to tick down the duration,
             // thus the duration appears to stack

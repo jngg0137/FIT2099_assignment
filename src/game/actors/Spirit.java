@@ -24,6 +24,8 @@ import java.util.TreeMap;
  */
 public class Spirit extends Actor implements Spawnable{
     private Map<Integer, Behaviour> behaviours = new TreeMap<>();
+    private final int wanderBehaviourPriority = 999;
+    private final int attackBehaviourPriority = 1;
 
     /**
      * Constructor for the Spirit class
@@ -31,7 +33,7 @@ public class Spirit extends Actor implements Spawnable{
      */
     public Spirit(){
         super("Spirit",'&',100);
-        this.behaviours.put(999, new WanderBehaviour());
+        this.behaviours.put(wanderBehaviourPriority, new WanderBehaviour());
         this.setIntrinsicWeapon(new BareFist());
     }
     /**
@@ -64,7 +66,7 @@ public class Spirit extends Actor implements Spawnable{
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
         ActionList actions = new ActionList();
         if (otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
-            this.behaviours.put(1,new AttackBehaviour(otherActor,this.getIntrinsicWeapon()));
+            this.behaviours.put(attackBehaviourPriority,new AttackBehaviour(otherActor,this.getIntrinsicWeapon()));
             actions.add(new AttackAction(this, direction));
         }
         return actions;

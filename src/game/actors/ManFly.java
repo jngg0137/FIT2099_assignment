@@ -25,10 +25,13 @@ import java.util.TreeMap;
  */
 public class ManFly extends Actor implements Spawnable{
     private Map<Integer, Behaviour> behaviours = new TreeMap<>();
+    private final int wanderBehaviourPriority = 999;
+    private final int attackBehaviourPriority = 1;
+    private final int followBehaviourPriority = 2;
 
     public ManFly(){
         super("Man-fly",'%',50);
-        this.behaviours.put(999, new WanderBehaviour());
+        this.behaviours.put(wanderBehaviourPriority, new WanderBehaviour());
         this.setIntrinsicWeapon(new Stinger());
     }
 
@@ -62,8 +65,8 @@ public class ManFly extends Actor implements Spawnable{
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
         ActionList actions = new ActionList();
         if (otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
-            this.behaviours.put(1,new AttackBehaviour(otherActor,this.getIntrinsicWeapon()));
-            this.behaviours.put(2,new FollowBehaviour(otherActor));
+            this.behaviours.put(attackBehaviourPriority,new AttackBehaviour(otherActor,this.getIntrinsicWeapon()));
+            this.behaviours.put(followBehaviourPriority,new FollowBehaviour(otherActor));
             actions.add(new AttackAction(this, direction));
         }
         return actions;

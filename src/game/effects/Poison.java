@@ -15,6 +15,7 @@ public class Poison extends StatusEffect {
     Display display = new Display();
     private int damagePerTick;
     private int effectDuration;
+    private final int endEffectDuration = 0;
 
     /**
      * Constructor for Poison status effect
@@ -36,14 +37,14 @@ public class Poison extends StatusEffect {
      */
     @Override
     public void tick(Location location, Actor actor){
-        if (!actor.hasCapability(Ability.IMMUNE_TO_POISON) && effectDuration != 0) {
+        if (!actor.hasCapability(Ability.IMMUNE_TO_POISON) && effectDuration != endEffectDuration) {
             actor.hurt(damagePerTick);
             display.println(actor + " takes " + damagePerTick + " poison damage.");
             if (!actor.isConscious()) {
                 actor.unconscious(location.map());
             }
         }
-        else if (effectDuration == 0)
+        else if (effectDuration == endEffectDuration)
         {
             actor.removeStatusEffect(this);
         }
