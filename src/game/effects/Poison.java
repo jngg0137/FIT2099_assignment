@@ -7,7 +7,9 @@ import edu.monash.fit2099.engine.positions.Location;
 import game.actors.Ability;
 
 /**
- * Class which stores details on poison effect
+ * Represents the Poison status effect, which damages an actor over a specified duration.
+ * The effect applies damage per tick and lasts for a set number of turns.
+ * Once the duration ends, the poison effect is removed.
  *
  * @author Ng Jiunn Chieh 33590850
  */
