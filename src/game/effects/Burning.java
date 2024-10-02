@@ -9,12 +9,14 @@ import game.actors.Ability;
 /**
  * Represents a burning effect that can be given to an actor
  * @author Muhammad Hafiz Idlan Bin Hakimi
+ * Modified by: Ng Jiunn Chieh 33590850
  */
 public class Burning extends StatusEffect {
 
     private int damageOneTick;
     private int effectDuration;
     private final GameEntity causeOfBurning;
+    private final int endEffectDuration = 0;
 
     /**
      * Constructor
@@ -37,7 +39,7 @@ public class Burning extends StatusEffect {
     @Override
     public void tick(Location location, Actor actor) {
 
-        if (!actor.hasCapability(Ability.IMMUNE_TO_BURNING) && effectDuration != 0)
+        if (!actor.hasCapability(Ability.IMMUNE_TO_BURNING) && effectDuration != endEffectDuration)
         {
             actor.hurt(damageOneTick);
             System.out.println(causeOfBurning + " burns " + actor);
@@ -46,7 +48,7 @@ public class Burning extends StatusEffect {
                 actor.unconscious(location.map());
             }
         }
-        else if (effectDuration == 0)
+        else if (effectDuration == endEffectDuration)
         {
             actor.removeStatusEffect(this);
         }

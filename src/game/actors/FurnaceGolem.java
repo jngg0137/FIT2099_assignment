@@ -13,24 +13,28 @@ import game.actions.AttackAction;
 import game.behaviours.AttackBehaviour;
 import game.behaviours.FollowBehaviour;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Class representing the Furnace Golem enemy
  * The golem is able to attack any enemy that is hostile towards it as well as follow them.
  * @author Adrian Kristanto
  * Modified by : Muhammad Hafiz Idlan Bin Hakimi
+ *               Ng Jiunn Chieh 33590850
  */
 public class FurnaceGolem extends Actor {
-    private Map<Integer, Behaviour> behaviours = new HashMap<>();
+    private Map<Integer, Behaviour> behaviours = new TreeMap<>();
+    private final int wanderBehaviourPriority = 999;
+    private final int attackBehaviourPriority = 1;
+    private final int followBehaviourPriority = 2;
 
     /**
      * Constructor for the FurnaceGolem class
      */
     public FurnaceGolem() {
         super("Furnace Golem", 'A', 1000);
-        this.behaviours.put(999, new WanderBehaviour());
+        this.behaviours.put(wanderBehaviourPriority, new WanderBehaviour());
         this.setIntrinsicWeapon(new FurnaceGolemLeg());
         this.addCapability(Ability.IMMUNE_TO_BURNING);
     }
@@ -64,8 +68,8 @@ public class FurnaceGolem extends Actor {
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
         ActionList actions = new ActionList();
         if (otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
-            this.behaviours.put(1,new AttackBehaviour(otherActor,this.getIntrinsicWeapon()));
-            this.behaviours.put(2,new FollowBehaviour(otherActor));
+            this.behaviours.put(attackBehaviourPriority,new AttackBehaviour(otherActor,this.getIntrinsicWeapon()));
+            this.behaviours.put(followBehaviourPriority,new FollowBehaviour(otherActor));
             actions.add(new AttackAction(this, direction));
         }
         return actions;

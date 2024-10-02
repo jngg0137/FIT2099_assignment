@@ -19,6 +19,8 @@ import game.weapons.BareFist;
  */
 public class Player extends Actor {
 
+    int mana;
+
     /**
      * Constructor.
      *
@@ -53,6 +55,14 @@ public class Player extends Actor {
         System.out.println("Name: " + this.name + "\nHealth: " + this.getAttribute(BaseActorAttributes.HEALTH) + "/" + this.getAttributeMaximum(BaseActorAttributes.HEALTH) + "\nMana: " + this.getAttribute(BaseActorAttributes.MANA) + "/" + this.getAttributeMaximum(BaseActorAttributes.MANA) + "\nStrength: " + this.getAttribute(ExtraActorAttributes.STRENGTH));
         Menu menu = new Menu(actions);
         return menu.showMenu(this, display);
+    }
+
+    public int getMana() {
+        return mana;
+    }
+
+    public void reduceMana(int amount) {
+        mana -= amount;
     }
 
 }
