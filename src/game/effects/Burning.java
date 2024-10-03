@@ -3,6 +3,7 @@ package game.effects;
 import edu.monash.fit2099.engine.GameEntity;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.actors.StatusEffect;
+import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.Location;
 import game.actors.Ability;
 
@@ -13,6 +14,7 @@ import game.actors.Ability;
  */
 public class Burning extends StatusEffect {
 
+    private Display display = new Display();
     private int damageOneTick;
     private int effectDuration;
     private final GameEntity causeOfBurning;
@@ -42,7 +44,7 @@ public class Burning extends StatusEffect {
         if (!actor.hasCapability(Ability.IMMUNE_TO_BURNING) && effectDuration != endEffectDuration)
         {
             actor.hurt(damageOneTick);
-            System.out.println(causeOfBurning + " burns " + actor);
+            display.println(causeOfBurning + " burns " + actor);
             if (!actor.isConscious())
             {
                 actor.unconscious(location.map());

@@ -14,7 +14,7 @@ import game.actors.Ability;
  * @author Ng Jiunn Chieh 33590850
  */
 public class Poison extends StatusEffect {
-    Display display = new Display();
+    private Display display = new Display();
     private int damagePerTick;
     private int effectDuration;
     private final int endEffectDuration = 0;
