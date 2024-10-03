@@ -32,6 +32,7 @@ public class ManFly extends Actor implements Spawnable{
     public ManFly(){
         super("Man-fly",'%',50);
         this.behaviours.put(wanderBehaviourPriority, new WanderBehaviour());
+        this.addCapability(Ability.IMMUNE_TO_POISON);
         this.setIntrinsicWeapon(new Stinger());
     }
 
