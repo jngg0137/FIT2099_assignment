@@ -18,7 +18,7 @@ public class AttributeRestoring extends StatusEffect {
     private final int restoredPointsPerTick;
 
     /**
-     * Constructor for the AttributeRestoring claass
+     * Constructor for the AttributeRestoring class
      * @param attributeToBeRestored the attribute of the actor that is being restored
      * @param effectDuration how long the effect lingers
      * @param restoredPointsPerTick the amount of points the attribute is restored by per tick
