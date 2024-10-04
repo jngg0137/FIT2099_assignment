@@ -11,7 +11,6 @@ import edu.monash.fit2099.engine.positions.Location;
  */
 public class AttributeBuff extends StatusEffect {
 
-    private final Actor actorBuffed;
     private final Enum<?> attributeToBeBuffed;
     private int effectDuration;
     private final int endEffectDuration = 0;
@@ -26,7 +25,6 @@ public class AttributeBuff extends StatusEffect {
      */
     public AttributeBuff(Actor actorBuffed, Enum<?> attributeToBeBuffed, int effectDuration, int pointsBuffed) {
         super(attributeToBeBuffed + "Buff");
-        this.actorBuffed = actorBuffed;
         this.attributeToBeBuffed = attributeToBeBuffed;
         this.effectDuration = effectDuration;
         this.pointsBuffed = pointsBuffed;
