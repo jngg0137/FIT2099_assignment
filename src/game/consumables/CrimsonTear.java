@@ -31,7 +31,8 @@ public class CrimsonTear extends ConsumableItem{
     @Override
     public String consume(Actor actor, GameMap gameMap) {
 
-        this.decreaseCharges();
+        decreaseCharges();
+        actor.removeItemFromInventory(this);
         actor.addStatusEffect(new AttributeRestoring(BaseActorAttributes.HEALTH,RESTORING_DURATION,HEALTH_POINTS));
         return String.format("%s consumed by %s. %s health will be restored by %d points for %d turns.",this, actor, actor, HEALTH_POINTS, RESTORING_DURATION);
     }
