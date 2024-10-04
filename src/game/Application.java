@@ -170,8 +170,8 @@ public class Application {
         gateToGravesite.addGateAction(moveToGravesite);
 
         // Add gate to the Belurat maps
-        beluratTowerGameMap.at(3, 3).addItem(gateToGravesite);
-        beluratSewersGameMap.at(0, 4).addItem(gateToGravesite);
+        beluratTowerGameMap.at(2, 2).addItem(gateToGravesite);
+        beluratSewersGameMap.at(4, 4).addItem(gateToGravesite);
 
         // Add 5 graveyards to Belurat Tower
         Spawner graveyardSpirit = new Spawner(new Graveyard(),new Spirit(),20);
