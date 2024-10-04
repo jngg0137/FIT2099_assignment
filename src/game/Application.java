@@ -166,7 +166,7 @@ public class Application {
 
         // Gate back to Gravesite Plain
         GateItem gateToGravesite = new GateItem("Gate", 'H', false);
-        MoveActorAction moveToGravesite = new MoveActorAction(gameMap.at(7, 4), "back to the Gravesite Plains");
+        MoveActorAction moveToGravesite = new MoveActorAction(gameMap.at(43, 3), "back to the Gravesite Plains");
         gateToGravesite.addGateAction(moveToGravesite);
 
         // Add gate to the Belurat maps
