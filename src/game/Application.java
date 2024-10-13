@@ -186,6 +186,13 @@ public class Application {
         beluratTowerGameMap.at(2, 2).addItem(gateToGravesite);
         beluratSewersGameMap.at(4, 4).addItem(gateToGravesite);
 
+        // Create a gate to Stagefront
+        GateItem gateToStagefront = new GateItem("Gate to Stagefront", 'H', false);
+        gateToStagefront.addGateAction(new MoveActorAction(stagefrontGameMap.at(1, 3), "to Stagefront"));
+
+        // Place the gate in Belurat, Tower Settlement
+        beluratTowerGameMap.at(15, 0).addItem(gateToStagefront);
+
         // Add 5 graveyards to Belurat Tower
         Spawner graveyardSpirit = new Spawner(new Graveyard(),new Spirit(),20);
         beluratTowerGameMap.at(20,1).addItem(graveyardSpirit);
