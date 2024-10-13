@@ -104,6 +104,19 @@ public class Application {
                 beluratSewersGroundFactory, beluratSewersMap);
         world.addGameMap(beluratSewersGameMap);
 
+        List<String> stagefrontMap = Arrays.asList(
+                "#################",
+                "#~~~..........~~#",
+                "#~~~...........~#",
+                "#~~.............#",
+                "#............~~~#",
+                "#..........~~~~~#",
+                "#######...#######"
+        );
+
+        GameMap stagefrontGameMap = new GameMap("Stagefront", groundFactory, stagefrontMap);
+        world.addGameMap(stagefrontGameMap);
+
         // BEHOLD, ELDEN THING!
         for (String line : FancyMessage.TITLE.split("\n")) {
             new Display().println(line);
