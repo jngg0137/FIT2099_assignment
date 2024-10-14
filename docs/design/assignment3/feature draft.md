@@ -6,7 +6,7 @@ the player can access it to go to the Ruined Pier, where KazaaakplethKilik (Ÿ) 
 KazaaakplethKilik (Ÿ) has the following:
 - 8000 HP
 - Immunity to drowning
-- WornShield (🛡️) weapon
+- WornShield (🛡️) weapon (req 4+)
 - Crossbow(🏹) ranged weapon
 
 KazaaakplethKilik (Ÿ) has the following attacks / actions:
@@ -33,4 +33,8 @@ Said actor can't move onto it intentionally.
 
 New items:
 - WornShield (🛡️) that reduces wielder's damage taken by 30% and allows them to charge in a direction. Has limited 
-durability and can break, removing it from actor inventory.
+durability and can break, removing it from actor inventory. (req 4+)
+- BurningBolt (Ý)
+- PoisonBolt (¥)
+- PiercingBolt (Y)
+- Bolt (y)
