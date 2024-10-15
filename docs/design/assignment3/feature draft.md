@@ -28,8 +28,9 @@ the 'Bleed' status effect for 5 turns.
   - Fire Bolt(y) at the player for 20 damage
 
 New ground:
-- There is Deep Water (ˆ) surrounding the pier. If an actor moves onto it without drown immunity, they die instantly. 
-Said actor can't move onto it intentionally.
+- There is Deep Water (^) surrounding the pier. If an actor moves onto it without drown immunity, they die instantly. 
+Said actor can't move onto it intentionally. Items that fall into it are removed instantly.
+- Plank (¦) being the floor of the pier. Is flammable.
 
 New items:
 - WornShield (🛡️) that reduces wielder's damage taken by 30% and allows them to charge in a direction. Has limited 
@@ -38,3 +39,20 @@ durability and can break, removing it from actor inventory. (req 4+)
 - PoisonBolt (¥)
 - PiercingBolt (Y)
 - Bolt (y)
+
+Ruined Pier map:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+¦¦###¦¦¦¦¦¦########¦¦######¦¦¦¦¦¦¦¦¦¦^^^^^^^^^^^^^^
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦##^^^^^^^^^^
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦###¦##¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦#####¦¦¦¦^^
+¦¦¦¦¦¦¦#¦¦¦¦¦¦¦¦¦¦#^^^^^^^^#¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦^^^
+¦¦¦¦¦¦¦#¦¦¦¦¦¦¦¦¦¦#^^^^^^^^#¦¦¦¦¦¦¦¦#¦¦¦¦¦¦¦¦¦¦¦¦¦^
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦^^^##¦¦¦¦¦¦¦¦¦#¦¦¦¦¦¦###¦¦¦^^
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦^^¦¦¦¦#^
+¦¦¦¦¦¦¦¦¦#########^^¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦#^^^^^¦¦¦¦^
+¦¦¦¦¦¦¦¦¦#^^^^^^^^^^^^^^^#¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦####¦¦¦¦#^
+¦¦¦¦¦¦¦#^^^^^^^^^^^^^^^^^#¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦#^
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦^^^^^^#¦¦¦¦¦¦¦¦¦¦¦¦###¦¦##¦¦¦¦¦¦¦¦¦#^
+¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦##¦¦¦¦¦##¦¦¦¦¦¦¦^^^
+¦¦¦¦¦####¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦#^^^^^^^^^^
