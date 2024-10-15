@@ -20,12 +20,13 @@ being knocked back 2 tiles and taking 30 damage. After either happens, he will u
 attack has a downtime of 10 turns
 - When nearby player, slash with Mantis Blade for 80 damage. This attack has a 40% chance to hit and inflicts 
 the 'Bleed' status effect for 5 turns.
-- Fire crossbow bolts at player with 35% chance to hit (also telegraphed)
-  - Fire BurningBolt (Ý) at the player for 50 damage and inflict the 'Burning' status effect for 3 turns
-  - Fire PoisonBolt (¥) at the player for 40 damage and inflict the 'Poison' status effect for 3 turns, turns into
-    Bolt (y) that can be picked up if it collides with Wall (#)
-  - Fire PiercingBolt (Y) at the player for 30 damage, going through Wall (#)
-  - Fire Bolt(y) at the player for 20 damage
+- Fire crossbow bolts at player with 50% chance to hit (also telegraphed), it continues flying towards a ground it can't
+pass through if it misses.
+  - Fire BurningBolt (Ý) at the player for 50 damage and ignites the surrounding ground it strikes, setting it on fire 
+  for 40 turns
+  - Fire PoisonBolt (¥) at the player for 40 damage and inflict the 'Poison' status effect for 3 turns, can be picked up
+  if it collides with Wall (#)
+  - Fire Bolt(y) at the player for 20 damage, can be picked up if it collides with Wall (#)
 
 New ground:
 - There is Deep Water (^) surrounding the pier. If an actor moves onto it without drown immunity, they die instantly. 
@@ -37,7 +38,6 @@ New items:
 durability and can break, removing it from actor inventory. (req 4+)
 - BurningBolt (Ý)
 - PoisonBolt (¥)
-- PiercingBolt (Y)
 - Bolt (y)
 
 Ruined Pier map:
