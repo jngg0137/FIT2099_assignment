@@ -3,6 +3,7 @@ package game.actors;
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actions.DoNothingAction;
+import edu.monash.fit2099.engine.actions.MoveActorAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.actors.Behaviour;
 import edu.monash.fit2099.engine.displays.Display;
@@ -14,6 +15,7 @@ import game.behaviours.FollowBehaviour;
 import game.behaviours.WanderBehaviour;
 import game.divinepowers.DivinePower;
 import game.divinepowers.WindDivinePower;
+import game.items.GateItem;
 import game.weapons.LionBite;
 
 import java.util.Map;
@@ -34,6 +36,7 @@ public class DivineBeastDancingLion extends Actor {
     private Random random = new Random();
     private Actor target;
     private static final int DIVINE_POWER_CHANGE_CHANCE = 25;
+    private Display display = new Display();
 
     /**
      * Constructor for the DivineBeastDancingLion.
@@ -144,5 +147,28 @@ public class DivineBeastDancingLion extends Actor {
         }
         return actions;
     }
+
+    /**
+     * Handles the unconscious state of the Divine Beast Dancing Lion.
+     *
+     * @param map the GameMap containing the Divine Beast
+     * @return a description of the unconscious state
+     */
+    @Override
+    public String unconscious(GameMap map) {
+        Location bossLocation = map.locationOf(this);
+
+        // Create a gate back to Belurat
+        GateItem gateToBelurat = new GateItem("Gate to Belurat", 'H', false);
+        gateToBelurat.addGateAction(new MoveActorAction(beluratMap.at(2, 2), "to Belurat, Tower Settlement"));
+
+        // Place the gate at the boss's location
+        bossLocation.addItem(gateToBelurat);
+
+        display.println(this + " has been defeated! A gate back to Belurat has appeared.");
+
+        return super.unconscious(map);
+    }
+
 
 }
