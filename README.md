@@ -87,8 +87,6 @@ Alternative designs:
 - Instead of having the crossbow shoot arrows from inventory everytime, make the crossbow just inflict random status
   effects on the target. This design would remove the need to create classes for bolts, but it wouldn't allow for
   bolts to be picked up and reused
-- Modifying Item class in engine package to have durability, but the same can be achieved using interfaces to implement
-  item durability
 
 When a new thing is added:
 - New bolt for crossbow: Create new bolt class and make it implement Ammunition interface
