@@ -127,4 +127,22 @@ public class DivineBeastDancingLion extends Actor {
         return new DoNothingAction();
     }
 
+    /**
+     * Returns a collection of the actions that the other actor can do to the Divine Beast.
+     *
+     * @param otherActor the Actor that might be performing attack
+     * @param direction  String representing the direction of the other Actor
+     * @param map        current GameMap
+     * @return ActionList of allowable actions
+     */
+    @Override
+    public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
+        // Actors that are HOSTILE_TO_ENEMY can attack the Divine Beast
+        ActionList actions = new ActionList();
+        if (otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
+            actions.add(new AttackAction(this, direction));
+        }
+        return actions;
+    }
+
 }
