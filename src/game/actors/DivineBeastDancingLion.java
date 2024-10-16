@@ -1,8 +1,16 @@
 package game.actors;
 
+import edu.monash.fit2099.engine.actions.Action;
+import edu.monash.fit2099.engine.actions.ActionList;
+import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.actors.Behaviour;
+import edu.monash.fit2099.engine.displays.Display;
+import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
+import edu.monash.fit2099.engine.positions.Location;
+import game.actions.AttackAction;
+import game.behaviours.FollowBehaviour;
 import game.behaviours.WanderBehaviour;
 import game.divinepowers.DivinePower;
 import game.divinepowers.WindDivinePower;
@@ -12,8 +20,11 @@ import java.util.Map;
 import java.util.Random;
 import java.util.TreeMap;
 
+
 /**
  * Class representing the Divine Beast Dancing Lion boss.
+ *
+ * @author Mohamad Kassem Alsabbagh
  */
 public class DivineBeastDancingLion extends Actor {
 
@@ -21,6 +32,8 @@ public class DivineBeastDancingLion extends Actor {
     private DivinePower currentDivinePower;
     private GameMap beluratMap;
     private Random random = new Random();
+    private Actor target;
+    private static final int DIVINE_POWER_CHANGE_CHANCE = 25;
 
     /**
      * Constructor for the DivineBeastDancingLion.
@@ -35,4 +48,83 @@ public class DivineBeastDancingLion extends Actor {
         this.beluratMap = beluratMap;
         this.setIntrinsicWeapon(new LionBite());
     }
+
+    /**
+     * Selects and returns an action to perform on the current turn.
+     *
+     * @param actions    collection of possible Actions for this Actor
+     * @param lastAction The Action this Actor took last turn
+     * @param map        the map containing the Actor
+     * @param display    the I/O object to which messages may be written
+     * @return the Action to perform
+     */
+    @Override
+    public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+        // Check if target is still valid
+        if (target != null && (!target.isConscious() || !map.contains(target))) {
+            target = null;
+            behaviours.remove(1); // Remove follow behaviour
+            behaviours.put(10, new WanderBehaviour()); // Add wander behaviour
+        }
+
+        Location here = map.locationOf(this);
+
+        if (target == null) {
+            // Look for actors in adjacent locations
+            for (Exit exit : here.getExits()) {
+                Location destination = exit.getDestination();
+                if (destination.containsAnActor()) {
+                    Actor potentialTarget = destination.getActor();
+                    if (potentialTarget.hasCapability(Status.HOSTILE_TO_ENEMY)) {
+                        target = potentialTarget;
+                        behaviours.remove(10); // Remove wander behaviour
+                        behaviours.put(1, new FollowBehaviour(target));
+                        break;
+                    }
+                }
+            }
+        }
+
+        if (target != null) {
+            // Check if target is adjacent
+            Location targetLocation = map.locationOf(target);
+            boolean adjacent = false;
+            String directionFromTargetToHere = "";
+
+            for (Exit exit : targetLocation.getExits()) {
+                if (exit.getDestination() == here) {
+                    adjacent = true;
+                    directionFromTargetToHere = exit.getName();
+                    break;
+                }
+            }
+
+            // 25% chance to change divine power
+            int chance = random.nextInt(100);
+            if (chance < DIVINE_POWER_CHANGE_CHANCE) {
+                DivinePower newPower = currentDivinePower.determineNextDivinePower();
+                if (!newPower.getName().equals(currentDivinePower.getName())) {
+                    currentDivinePower = newPower;
+                    display.println(this + " has changed its divine power to " + currentDivinePower.getName() + "!");
+                }
+            }
+
+            // Execute special attack
+            currentDivinePower.executeSpecialAttack(this, target, map);
+
+            if (adjacent) {
+                // Perform normal attack
+                return new AttackAction(target, directionFromTargetToHere);
+            }
+        }
+
+        // Execute behaviours
+        for (Behaviour behaviour : behaviours.values()) {
+            Action action = behaviour.getAction(this, map);
+            if (action != null)
+                return action;
+        }
+        return new DoNothingAction();
+    }
+
 }
