@@ -1,5 +1,3 @@
-// File: game/divinepowers/LightningDivinePower.java
-
 package game.divinepowers;
 
 import edu.monash.fit2099.engine.actors.Actor;
@@ -20,7 +18,7 @@ import java.util.Random;
  * turning the ground into a LightningPool and applying damage. If the target is on a water surface,
  * damage is doubled.
  *
- * Author: Mohamad Kassem Alsabbagh
+ * @author Mohamad Kassem Alsabbagh 34640843
  */
 public class LightningDivinePower implements DivinePower {
 
