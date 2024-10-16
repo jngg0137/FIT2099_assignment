@@ -8,10 +8,7 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.FancyGroundFactory;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.World;
-import game.actors.FurnaceGolem;
-import game.actors.ManFly;
-import game.actors.Player;
-import game.actors.Spirit;
+import game.actors.*;
 import game.grounds.*;
 import game.consumables.FlaskOfHealing;
 import game.consumables.FlaskOfRejuvenation;
@@ -141,13 +138,12 @@ public class Application {
         GreatKnife greatKnifeWithQuickstep = new GreatKnife("Great Knife (Quickstep)", '†', 25, "slashes", 80,5, new QuickStep());
         ShortSword shortSwordWithQuickstep = new ShortSword("Shortsword (Quickstep)", '!', 30, "stabs", 85, 10,new QuickStep());
 
-
-
         // Add player to the game map
         world.addPlayer(player, gameMap.at(7, 4));
 
         // Add actors and items to the Gravesite Plain map
         gameMap.at(42, 4).addActor(new FurnaceGolem());
+        stagefrontGameMap.at(13, 4).addActor(new DivineBeastDancingLion(beluratTowerGameMap)); // Adjust coordinates as needed
         gameMap.at(0,9).addItem(shortSword);
         gameMap.at(1,9).addItem(greatKnife);
         gameMap.at(7,5).addItem(flaskOfHealing);
