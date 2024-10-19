@@ -13,7 +13,7 @@ Req 4+:
   current HP. So if the actor has 10 temporary HP and receives 5 damage, it absorbs the damage the actor would've taken and
   temporary HP is depleted by 5. But if the actor receives 20 damage, they will take 10 damage to actual health and deplete their temporary HP fully.
   All temporary attributes expires after one turn. If this is to be extended to other BaseActorAttributes such as mana, same logic
-  applies.
+  applies. 
 
 Justifications:
 - Extensions made to display class allow for color coding other messages. For example, when the Tarnished is affected by
