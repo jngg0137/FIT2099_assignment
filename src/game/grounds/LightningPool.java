@@ -1,6 +1,7 @@
 package game.grounds;
 
 import edu.monash.fit2099.engine.actors.Actor;
+import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
 
@@ -13,6 +14,7 @@ import edu.monash.fit2099.engine.positions.Location;
 public class LightningPool extends Ground {
 
     private static final int DAMAGE = 50;
+    private Display display = new Display();
 
     /**
      * Constructor for LightningPool.
@@ -32,7 +34,7 @@ public class LightningPool extends Ground {
         Actor actor = location.getActor();
         if (actor != null) {
             actor.hurt(DAMAGE);
-            System.out.println(actor + " takes " + DAMAGE + " damage from the lightning pool!");
+            display.println(actor + " takes " + DAMAGE + " damage from the lightning pool!");
             if (!actor.isConscious()) {
                 actor.unconscious(location.map());
             }
