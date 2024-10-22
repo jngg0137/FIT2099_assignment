@@ -13,7 +13,21 @@
 Assignments' Contribution Log:
 https://docs.google.com/spreadsheets/d/1d_Xja7rJqmKZE3glNwH7M5D653KzUAg_YS8kBbL_Hzs/edit?usp=sharing
 
-Requirement 4 features:
+As per Adrian Kristanto's recommendation, only requirement 4+ was implemented due to time constraints. Base requirement
+4 listed in "Requirement 4 features" wasn't implemented.
+--------------------------------------------------------------------------------------------------------
+Requirement 4+ features:
+Crossbow(🏹) ranged weapon
+- Fire crossbow bolts with a 50% chance to hit
+- Different crossbow bolts to fire:
+    - Fire BurningBolt (Ý) for 80 damage and ignites the surrounding ground it strikes, setting it on fire
+      for 40 turns
+    - Fire PoisonBolt (¥) for 80 damage and inflict the 'Poison' status effect for 20 turns, can be picked 
+    up if it collides with Wall (#)
+    - Fire Bolt(y) for 100 damage and push target 2 tiles back, can be picked up if it collides with Wall (#)
+      
+________________________________________________________________________________________________________
+Requirement 4 features: (not implemented)
 A boss fight that is only accessible after interacting with the Suspicious Trader (ඞ) once all remembrances have been
 traded in. Suspicious Trader (ඞ) will request help with getting back his ship after it was stolen by Mantis thief,
 KazaaakplethKilik (Ÿ). The Locked Gate (×) at the north of Gravesite Plain will turn into a normal gate and
