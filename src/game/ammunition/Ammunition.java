@@ -10,12 +10,12 @@ import edu.monash.fit2099.engine.positions.GameMap;
  */
 public interface Ammunition{
     /**
-     * Define what happens to the user, target or both when using this ammunition
+     * Define what happens to the user, target or both when the target is hit
      *
      * @param attacker  actor using this ammunition
      * @param target    actor being attacked
      * @param map       map this ammunition is used
      * @return          a description of what occurs when using this ammunition
      */
-    String use(Actor attacker, Actor target, GameMap map);
+    String onHit(Actor attacker, Actor target, GameMap map);
 }

@@ -21,7 +21,7 @@ public class BurningBolt extends Item implements Ammunition{
     }
 
     /**
-     * Define what happens to the user, target or both when using this ammunition
+     * Define what happens to the user, target or both when the target is hit
      *
      * @param attacker actor using this ammunition
      * @param target   actor being attacked
@@ -29,7 +29,7 @@ public class BurningBolt extends Item implements Ammunition{
      * @return a description of what occurs when using this ammunition
      */
     @Override
-    public String use(Actor attacker, Actor target, GameMap map) {
+    public String onHit(Actor attacker, Actor target, GameMap map) {
         Location targetLocation = map.locationOf(target);
 
         for (Exit exit : targetLocation.getExits()){
