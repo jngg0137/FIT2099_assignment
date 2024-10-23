@@ -8,7 +8,7 @@ import edu.monash.fit2099.engine.positions.GameMap;
  *
  * @author Ng Jiunn Chieh 33590850
  */
-public interface Ammunition{
+public interface BoltAmmunition {
     /**
      * Define what happens to the user, target or both when the target is hit
      *

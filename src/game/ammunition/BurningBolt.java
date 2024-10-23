@@ -9,7 +9,7 @@ import edu.monash.fit2099.engine.positions.Location;
 import game.actors.Ability;
 import game.grounds.Fire;
 
-public class BurningBolt extends Item implements Ammunition{
+public class BurningBolt extends Item implements BoltAmmunition {
     private final int damage = 80;
 
     /**

@@ -9,7 +9,7 @@ import edu.monash.fit2099.engine.positions.GameMap;
  *
  * @author Ng Jiunn Chieh 33590850
  */
-public class Bolt extends Item implements Ammunition{
+public class Bolt extends Item implements BoltAmmunition {
     private final int damage = 100;
     private final int knockback = 2;
 

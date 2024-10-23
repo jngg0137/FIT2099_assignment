@@ -5,7 +5,7 @@ import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.effects.Poison;
 
-public class PoisonBolt extends Item implements Ammunition{
+public class PoisonBolt extends Item implements BoltAmmunition {
     private final int damage = 80;
     private final int effectDuration = 20;
     private final Poison poison = new Poison(5,effectDuration);
