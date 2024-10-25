@@ -22,6 +22,7 @@ public abstract class RangedWeaponItem extends Item implements Weapon {
     private final String verb;
     private WeaponArt weaponArt;
     private float damageMultiplier;
+    private final int range;
 
     /**
      * Constructor
@@ -33,13 +34,14 @@ public abstract class RangedWeaponItem extends Item implements Weapon {
      * @param hitRate       the probability/chance to hit the target
      * @param weaponArt     Weapon art to give this weapon
      */
-    public RangedWeaponItem(String name, char displayChar, int damage, String verb, int hitRate, WeaponArt weaponArt){
+    public RangedWeaponItem(String name, char displayChar, int damage, String verb, int hitRate, WeaponArt weaponArt, int range){
         super(name, displayChar, true);
         this.damage = damage;
         this.hitRate = hitRate;
         this.verb = verb;
         this.weaponArt = weaponArt;
         this.damageMultiplier = DEFAULT_DAMAGE_MULTIPLIER;
+        this.range = range;
     }
 
     /**
@@ -78,13 +80,13 @@ public abstract class RangedWeaponItem extends Item implements Weapon {
 
     /**
      * List of allowable actions that the item allows its owner do to other actor.
+     *
      * @param otherActor the other actor
      * @param location the location of the other actor
-     * @return a list of allowable actions
+     * @return an unmodifiable list of Actions
      */
-    public ActionList allowableActions(Actor otherActor, Location location)
-    {
-        // to replace with new action class specifically for ranged weapons
+    @Override
+    public ActionList allowableActions(Actor otherActor, Location location){
         return null;
     }
 }
