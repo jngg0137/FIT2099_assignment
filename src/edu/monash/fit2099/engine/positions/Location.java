@@ -224,6 +224,38 @@ public class Location implements Printable {
     }
 
     /**
+     * Returns an unmodifiable list of exits within given grid range
+     *
+     * @param grid  the grid range in the form of (grid x grid)
+     * @return      an unmodifiable list of exits within given grid range
+     */
+    public List<Exit> getExits(int grid){
+        List<Exit> locationExits= new ArrayList<>();
+        List<Exit> ret = exits;
+
+        // continue getting exits of surrounding exits for given grid range
+        for (int i = 1; i < grid; i++){
+            List<Exit> exitsToAdd = new ArrayList<>();
+
+            // iterate through all stored exit locations to get their own exits
+            for (Exit exit : ret){
+                Location location = exit.getDestination();
+                locationExits = location.getExits();
+            }
+
+            // add obtained exits if they aren't already in the list
+            for (Exit locationExit : locationExits){
+                if (!ret.contains(locationExit)){
+                    exitsToAdd.add(locationExit);
+                }
+            }
+
+            ret.addAll(exitsToAdd);
+        }
+        return Collections.unmodifiableList(ret);
+    }
+
+    /**
      * Add an exit to this Location.
      * <p>
      * This method is used in GameMap to initialize the Location's exits.
