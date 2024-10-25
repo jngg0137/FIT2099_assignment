@@ -4,9 +4,12 @@ import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.actors.attributes.BaseActorAttributes;
 import edu.monash.fit2099.engine.items.Item;
+import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.Weapon;
+import game.actions.AttackAction;
+import game.actors.Ability;
 import game.weaponarts.WeaponArt;
 
 import java.util.Random;
@@ -33,6 +36,7 @@ public abstract class RangedWeaponItem extends Item implements Weapon {
      * @param verb          verb to use for this weapon
      * @param hitRate       the probability/chance to hit the target
      * @param weaponArt     Weapon art to give this weapon
+     * @param range         weapon range (e.g. a range of 3 will allow for attacking within a 3x3 grid
      */
     public RangedWeaponItem(String name, char displayChar, int damage, String verb, int hitRate, WeaponArt weaponArt, int range){
         super(name, displayChar, true);
@@ -42,6 +46,7 @@ public abstract class RangedWeaponItem extends Item implements Weapon {
         this.weaponArt = weaponArt;
         this.damageMultiplier = DEFAULT_DAMAGE_MULTIPLIER;
         this.range = range;
+        this.addCapability(Ability.RANGED);
     }
 
     /**
@@ -79,14 +84,23 @@ public abstract class RangedWeaponItem extends Item implements Weapon {
     }
 
     /**
-     * List of allowable actions that the item allows its owner do to other actor.
+     * List of allowable actions that the item allows its owner to do to other actor.
      *
-     * @param otherActor the other actor
-     * @param location the location of the other actor
+     * @param location the location of the actor holding this item
      * @return an unmodifiable list of Actions
      */
     @Override
-    public ActionList allowableActions(Actor otherActor, Location location){
-        return null;
+    public ActionList allowableActions(Actor owner, Location location){
+        ActionList actions = new ActionList();
+
+        for (Exit exit : location.getExits(range)){
+            Actor actor = null;
+            actor = exit.getDestination().getActor();
+
+            if (actor != null && actor != owner){
+                actions.add(new AttackAction(actor, location.toString(),this));
+            }
+        }
+        return actions;
     }
 }

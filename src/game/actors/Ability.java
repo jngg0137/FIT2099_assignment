@@ -21,5 +21,9 @@ public enum Ability {
     /**
      * Indicates whether an item uses bolts
      */
-    USE_BOLTS
+    USE_BOLTS,
+    /**
+     * Indicates whether an item has ranged abilities
+     */
+    RANGED
 }
