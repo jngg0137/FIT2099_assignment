@@ -43,8 +43,8 @@ public class FrostDivinePower implements DivinePower {
             List<Item> inventory = target.getItemInventory();
             for (Item item : inventory) {
                 targetLocation.addItem(item);
+                target.removeItemFromInventory(item);
             }
-            inventory.clear();
             display.println(target + " slips on the ice and drops all their items!");
         } else {
             display.println("Frost divine power has no effect as " + target + " is not on a body of water.");
