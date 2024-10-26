@@ -27,22 +27,28 @@ public class BurningBolt extends Item{
      * @param attacker actor using this ammunition
      * @param target   actor being attacked
      * @param map      map this ammunition is used
+     * @param hitTarget	was the target hit
      * @return a description of what occurs when using this ammunition
      */
     @Override
-    public String onRangedHit(Actor attacker, Actor target, GameMap map) {
-        target.hurt(damage);
-        Location targetLocation = map.locationOf(target);
+    public String rangedEffect(Actor attacker, Actor target, GameMap map, boolean hitTarget) {
+        if (hitTarget) {
+            target.hurt(damage);
+            Location targetLocation = map.locationOf(target);
 
-        for (Exit exit : targetLocation.getExits()){
-            Ground groundAffected = exit.getDestination().getGround();
+            for (Exit exit : targetLocation.getExits()) {
+                Ground groundAffected = exit.getDestination().getGround();
 
-            if (!groundAffected.hasCapability(Ability.IMMUNE_TO_BURNING)) {
-                exit.getDestination().setGround(new Fire(40, groundAffected));
+                if (!groundAffected.hasCapability(Ability.IMMUNE_TO_BURNING)) {
+                    exit.getDestination().setGround(new Fire(40, groundAffected));
+                }
             }
-        }
 
-        return this + " hits " + target + " for " + damage +
-                " and sets nearby tiles on fire.";
+            return this + " hits " + target + " for " + damage +
+                    " and sets nearby tiles on fire.";
+        }
+        else {
+            return "";
+        }
     }
 }

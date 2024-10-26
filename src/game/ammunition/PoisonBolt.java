@@ -26,13 +26,20 @@ public class PoisonBolt extends Item{
      * @param attacker actor using this ammunition
      * @param target   actor being attacked
      * @param map      map this ammunition is used
+     * @param hitTarget	was the target hit
      * @return a description of what occurs when using this ammunition
      */
     @Override
-    public String onRangedHit(Actor attacker, Actor target, GameMap map) {
-        target.hurt(damage);
-        target.addStatusEffect(poison);
-        return this + " hits " + target + " for " + damage +
-                " damage and poisons them for " + effectDuration + " turns.";
+    public String rangedEffect(Actor attacker, Actor target, GameMap map, boolean hitTarget) {
+        if (hitTarget) {
+            target.hurt(damage);
+            target.addStatusEffect(poison);
+            return this + " hits " + target + " for " + damage +
+                    " damage and poisons them for " + effectDuration + " turns.";
+        }
+        else
+        {
+            return "";
+        }
     }
 }

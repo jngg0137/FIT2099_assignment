@@ -29,13 +29,20 @@ public class Bolt extends Item{
      * @param attacker actor using this ammunition
      * @param target   actor being attacked
      * @param map      map this ammunition is used
+     * @param hitTarget	was the target hit
      * @return a description of what occurs when using this ammunition
      */
     @Override
-    public String onRangedHit(Actor attacker, Actor target, GameMap map) {
-        target.hurt(damage);
-        //for now doesn't push enemies back
-        return this + " hits " + target + " for " + damage +
-                " and pushed them back " + knockback + " tiles.";
+    public String rangedEffect(Actor attacker, Actor target, GameMap map, boolean hitTarget) {
+        if (hitTarget) {
+            target.hurt(damage);
+            //for now doesn't push enemies back
+            return this + " hits " + target + " for " + damage +
+                    " and pushed them back " + knockback + " tiles.";
+        }
+        else
+        {
+            return "";
+        }
     }
 }

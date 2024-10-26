@@ -64,8 +64,10 @@ public class Crossbow extends RangedWeaponItem implements ReloadableItem {
         String ret = "";
         Random rand = new Random();
         if (!(rand.nextInt(100) < super.getHitRate())) {
+            ret += bolt.rangedEffect(attacker,target,map,false) + "\n";
             bolt = null;
-            return attacker + " misses " + target + ".";
+            ret += attacker + " misses " + target + ".";
+            return ret;
         }
 
         // Check if weapon art is present
@@ -82,7 +84,7 @@ public class Crossbow extends RangedWeaponItem implements ReloadableItem {
 
         ret += String.format("\n%s %s at %s\n", attacker, super.getVerb(), target);
         // Carry out on hit effects of the bolt
-        ret += bolt.onRangedHit(attacker,target,map);
+        ret += bolt.rangedEffect(attacker,target,map,true);
         bolt = null;
         return ret;
     }
