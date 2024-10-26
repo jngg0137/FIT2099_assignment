@@ -132,4 +132,8 @@ public abstract class Item extends GameEntity implements Printable {
 	public ActionList allowableActions(Actor otherActor, Location location){
 		return new ActionList();
 	}
+
+	public ActionList allowableRangedActions(Actor owner, Location location){
+		return new ActionList();
+	}
 }

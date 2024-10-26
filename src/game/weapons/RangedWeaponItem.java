@@ -4,7 +4,6 @@ import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.actors.attributes.BaseActorAttributes;
 import edu.monash.fit2099.engine.items.Item;
-import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.Weapon;
@@ -84,23 +83,22 @@ public abstract class RangedWeaponItem extends Item implements Weapon {
     }
 
     /**
-     * List of allowable actions that the item allows its owner to do to other actor.
+     * List of allowable actions that the actor can perform with the ranged item
      *
-     * @param location the location of the actor holding this item
+     * @param owner     actor that has this item in inventory
+     * @param location  location of actor that has this item in inventory
      * @return an unmodifiable list of Actions
      */
     @Override
-    public ActionList allowableActions(Actor owner, Location location){
-        ActionList actions = new ActionList();
-
-        for (Exit exit : location.getExits(range)){
-            Actor actor = null;
-            actor = exit.getDestination().getActor();
-
-            if (actor != null && actor != owner){
-                actions.add(new AttackAction(actor, location.toString(),this));
+    public ActionList allowableRangedActions(Actor owner, Location location){
+        ActionList actions = super.allowableActions(owner, location);
+        System.out.println("Current location:"+location.toString());
+        for (Location suroundingLocation : location.getSurroundingLocations(range*2)){
+            if (suroundingLocation.containsAnActor()){
+                actions.add(new AttackAction(suroundingLocation.getActor(),suroundingLocation.toString(),this));
             }
         }
+
         return actions;
     }
 }

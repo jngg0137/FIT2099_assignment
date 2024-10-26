@@ -21,6 +21,7 @@ import game.items.Graveyard;
 import game.items.Spawner;
 import game.weaponarts.LifeSteal;
 import game.weaponarts.QuickStep;
+import game.weapons.Crossbow;
 import game.weapons.GreatKnife;
 import game.weapons.ShortSword;
 
@@ -127,7 +128,7 @@ public class Application {
         GreatKnife greatKnifeWithLifesteal = new GreatKnife("Great Knife (LifeSteal)", '†', 25, "slashes", 80, 5, new LifeSteal());
         GreatKnife greatKnifeWithQuickstep = new GreatKnife("Great Knife (Quickstep)", '†', 25, "slashes", 80,5, new QuickStep());
         ShortSword shortSwordWithQuickstep = new ShortSword("Shortsword (Quickstep)", '!', 30, "stabs", 85, 10,new QuickStep());
-
+        Crossbow crossbow = new Crossbow("Crossbow",'I',50,"shoots",100,null, 5);
 
 
         // Add player to the game map
@@ -147,7 +148,7 @@ public class Application {
         gameMap.at(7,8).addItem(shortSwordWithQuickstep);
         gameMap.at(8,8).addItem(greatKnifeWithLifesteal);
         gameMap.at(9,8).addItem(greatKnifeWithQuickstep);
-
+        gameMap.at(10,8).addItem(crossbow);
         // Single Gate with multiple destinations
         GateItem gateToBelurat = new GateItem("Gate", 'H', false);
 

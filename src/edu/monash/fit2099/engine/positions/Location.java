@@ -224,33 +224,49 @@ public class Location implements Printable {
     }
 
     /**
-     * Returns an unmodifiable list of exits within given grid range
+     * Returns an unmodifiable list of locations within given grid range
      *
-     * @param grid  the grid range in the form of (grid x grid)
-     * @return      an unmodifiable list of exits within given grid range
+     * @param grid  the grid range in the form of an odd number
+     * @return      an unmodifiable list of locations surrounding a location
+     *              within grid x grid range. Return null if grid range is invalid
      */
-    public List<Exit> getExits(int grid){
-        List<Exit> locationExits= new ArrayList<>();
-        List<Exit> ret = exits;
+    public List<Location> getSurroundingLocations(int grid){
+        if (grid < 4){
+            return null;
+        }
 
-        // continue getting exits of surrounding exits for given grid range
-        for (int i = 1; i < grid; i++){
-            List<Exit> exitsToAdd = new ArrayList<>();
+        int radius = (grid - 1)/2;
+        List<Location> ret = new ArrayList<>();
+        NumberRange xrange = map.getXRange();
+        NumberRange yrange = map.getYRange();
+        int xMin = x - radius;
+        int xMax = x + radius;
+        int yMin = y - radius;
+        int yMax = y + radius;
 
-            // iterate through all stored exit locations to get their own exits
-            for (Exit exit : ret){
-                Location location = exit.getDestination();
-                locationExits = location.getExits();
-            }
+        if (xMin < xrange.min()) {
+            xMin = xrange.min();
+        }
 
-            // add obtained exits if they aren't already in the list
-            for (Exit locationExit : locationExits){
-                if (!ret.contains(locationExit)){
-                    exitsToAdd.add(locationExit);
+        if (xMax > xrange.max()) {
+            xMax = xrange.max();
+        }
+
+        if (yMin < yrange.min()){
+            yMin = yrange.min();
+        }
+
+        if (yMax > yrange.max()){
+            yMax = yrange.max();
+        }
+
+        for (int i = yMin; i <= yMax; i++){
+            for (int o = xMin; o <= xMax; o++){
+                Location location = map.at(o,i);
+                if (location != this){
+                    ret.add(location);
                 }
             }
-
-            ret.addAll(exitsToAdd);
         }
         return Collections.unmodifiableList(ret);
     }
