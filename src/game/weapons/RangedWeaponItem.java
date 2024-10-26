@@ -92,7 +92,6 @@ public abstract class RangedWeaponItem extends Item implements Weapon {
     @Override
     public ActionList allowableRangedActions(Actor owner, Location location){
         ActionList actions = super.allowableActions(owner, location);
-        System.out.println("Current location:"+location.toString());
         for (Location suroundingLocation : location.getSurroundingLocations(range*2)){
             if (suroundingLocation.containsAnActor()){
                 actions.add(new AttackAction(suroundingLocation.getActor(),suroundingLocation.toString(),this));
