@@ -20,6 +20,8 @@ import game.weaponarts.LifeSteal;
 import game.weaponarts.QuickStep;
 import game.weapons.GreatKnife;
 import game.weapons.ShortSword;
+import game.actors.SuspiciousTrader;
+
 
 /**
  * The main class to start the game.
@@ -143,6 +145,7 @@ public class Application {
 
         // Add actors and items to the Gravesite Plain map
         gameMap.at(42, 4).addActor(new FurnaceGolem());
+        gameMap.at(5,8).addActor(new SuspiciousTrader());
         stagefrontGameMap.at(13, 4).addActor(new DivineBeastDancingLion(beluratTowerGameMap)); // Adjust coordinates as needed
         gameMap.at(0,9).addItem(shortSword);
         gameMap.at(1,9).addItem(greatKnife);
