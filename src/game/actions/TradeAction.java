@@ -1,32 +1,40 @@
 package game.actions;
 
-import edu.monash.fit2099.engine.items.Item;
-import game.actors.SuspiciousTrader;
+import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
+import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.actors.Player;
-import edu.monash.fit2099.engine.actions.Action;
+import game.actors.SuspiciousTrader;
+import game.items.RemembranceOfDancingLion;
+import game.items.RemembranceOfFurnaceGolem;
+
+import java.util.List;
 
 public class TradeAction extends Action {
-    private Item remembrance;
-    private SuspiciousTrader trader;
+    private final Player player;
+    private final SuspiciousTrader trader;
 
-    public TradeAction(Item remembrance, SuspiciousTrader trader) {
-        this.remembrance = remembrance;
+    public TradeAction(Player player, SuspiciousTrader trader) {
+        this.player = player;
         this.trader = trader;
     }
 
     @Override
     public String execute(Actor actor, GameMap map) {
-        if (actor instanceof Player) {
-            Player player = (Player) actor;
-            return trader.trade(remembrance, player);
+        List<Item> inventory = player.getInventory();
+
+        for (Item item : inventory) {
+            // Check for specific remembrance items in player's inventory and trade
+            if (item instanceof RemembranceOfDancingLion || item instanceof RemembranceOfFurnaceGolem) {
+                return trader.trade(item, player);
+            }
         }
-        return "This action is only available to the Tarnished.";
+        return "You don't have any valid items to trade.";
     }
 
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " trades " + remembrance;
+        return actor + " can trade items with " + trader;
     }
 }
