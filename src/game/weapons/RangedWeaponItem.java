@@ -8,7 +8,6 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import game.actions.AttackAction;
-import game.actors.Ability;
 import game.weaponarts.WeaponArt;
 
 import java.util.Random;
@@ -45,7 +44,6 @@ public abstract class RangedWeaponItem extends Item implements Weapon {
         this.weaponArt = weaponArt;
         this.damageMultiplier = DEFAULT_DAMAGE_MULTIPLIER;
         this.range = range;
-        this.addCapability(Ability.RANGED);
     }
 
     /**
@@ -99,5 +97,41 @@ public abstract class RangedWeaponItem extends Item implements Weapon {
         }
 
         return actions;
+    }
+
+    /**
+     * Getter method for hit rate of this weapon
+     *
+     * @return  hit rate of this weapon
+     */
+    public int getHitRate(){
+        return hitRate;
+    }
+
+    /**
+     * Getter method for range of this weapon
+     *
+     * @return  range of this weapon
+     */
+    public int getRange(){
+        return range;
+    }
+
+    /**
+     * Getter method for verb this weapon uses
+     *
+     * @return  verb this weapon uses
+     */
+    public String getVerb(){
+        return verb;
+    }
+
+    /**
+     * Getter method for weapon art of this weapon
+     *
+     * @return  weapon art of this weapon
+     */
+    public WeaponArt getWeaponArt(){
+        return weaponArt;
     }
 }

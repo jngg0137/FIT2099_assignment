@@ -3,13 +3,14 @@ package game.ammunition;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
+import game.actors.Ability;
 
 /**
  * Class which represents the base ammunition for the crossbow
  *
  * @author Ng Jiunn Chieh 33590850
  */
-public class Bolt extends Item implements BoltAmmunition {
+public class Bolt extends Item{
     private final int damage = 100;
     private final int knockback = 2;
 
@@ -19,6 +20,7 @@ public class Bolt extends Item implements BoltAmmunition {
      */
     public Bolt(){
         super("Bolt",'y',true);
+        this.addCapability(Ability.LOADABLE_BOLTS);
     }
 
     /**
@@ -30,7 +32,7 @@ public class Bolt extends Item implements BoltAmmunition {
      * @return a description of what occurs when using this ammunition
      */
     @Override
-    public String onHit(Actor attacker, Actor target, GameMap map) {
+    public String onRangedHit(Actor attacker, Actor target, GameMap map) {
         target.hurt(damage);
         //for now doesn't push enemies back
         return this + " hits " + target + " for " + damage +

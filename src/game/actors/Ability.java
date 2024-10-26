@@ -19,11 +19,7 @@ public enum Ability {
      */
     IMMUNE_TO_POISON,
     /**
-     * Indicates whether an item uses bolts
+     * Indicates whether an item can be loaded into an item that uses bolts
      */
-    USE_BOLTS,
-    /**
-     * Indicates whether an item has ranged abilities
-     */
-    RANGED
+    LOADABLE_BOLTS,
 }

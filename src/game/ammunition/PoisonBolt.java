@@ -3,9 +3,10 @@ package game.ammunition;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
+import game.actors.Ability;
 import game.effects.Poison;
 
-public class PoisonBolt extends Item implements BoltAmmunition {
+public class PoisonBolt extends Item{
     private final int damage = 80;
     private final int effectDuration = 20;
     private final Poison poison = new Poison(5,effectDuration);
@@ -16,6 +17,7 @@ public class PoisonBolt extends Item implements BoltAmmunition {
      */
     public PoisonBolt(){
         super("Poison bolt",'¥',true);
+        this.addCapability(Ability.LOADABLE_BOLTS);
     }
 
     /**
@@ -27,10 +29,10 @@ public class PoisonBolt extends Item implements BoltAmmunition {
      * @return a description of what occurs when using this ammunition
      */
     @Override
-    public String onHit(Actor attacker, Actor target, GameMap map) {
+    public String onRangedHit(Actor attacker, Actor target, GameMap map) {
         target.hurt(damage);
         target.addStatusEffect(poison);
         return this + " hits " + target + " for " + damage +
-                " damage and poisons them for " + effectDuration + "turns.";
+                " damage and poisons them for " + effectDuration + " turns.";
     }
 }

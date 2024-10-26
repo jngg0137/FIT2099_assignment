@@ -4,6 +4,7 @@ import edu.monash.fit2099.engine.GameEntity;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.displays.Printable;
+import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 
 /**
@@ -133,7 +134,25 @@ public abstract class Item extends GameEntity implements Printable {
 		return new ActionList();
 	}
 
+	/**
+	 * List of allowable actions that the actor can perform with the ranged item
+	 *
+	 * @param owner     actor that has this item in inventory
+	 * @param location  location of actor that has this item in inventory
+	 * @return an unmodifiable list of Actions
+	 */
 	public ActionList allowableRangedActions(Actor owner, Location location){
 		return new ActionList();
+	}
+	/**
+	 * Define what happens to the user, target or both when the target is hit by this item via ranged attack
+	 *
+	 * @param attacker  actor using this item
+	 * @param target    actor being attacked
+	 * @param map       map this item is used
+	 * @return          a description of what occurs when using this item
+	 */
+	public String onRangedHit(Actor attacker, Actor target, GameMap map){
+		return null;
 	}
 }

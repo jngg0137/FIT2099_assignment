@@ -9,7 +9,7 @@ import edu.monash.fit2099.engine.positions.Location;
 import game.actors.Ability;
 import game.grounds.Fire;
 
-public class BurningBolt extends Item implements BoltAmmunition {
+public class BurningBolt extends Item{
     private final int damage = 80;
 
     /**
@@ -18,6 +18,7 @@ public class BurningBolt extends Item implements BoltAmmunition {
      */
     public BurningBolt(){
         super("Burning bolt",'Ý',true);
+        this.addCapability(Ability.LOADABLE_BOLTS);
     }
 
     /**
@@ -29,7 +30,8 @@ public class BurningBolt extends Item implements BoltAmmunition {
      * @return a description of what occurs when using this ammunition
      */
     @Override
-    public String onHit(Actor attacker, Actor target, GameMap map) {
+    public String onRangedHit(Actor attacker, Actor target, GameMap map) {
+        target.hurt(damage);
         Location targetLocation = map.locationOf(target);
 
         for (Exit exit : targetLocation.getExits()){
