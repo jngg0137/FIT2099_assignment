@@ -10,6 +10,7 @@ import edu.monash.fit2099.engine.positions.Location;
 /**
  * Abstract base class representing a physical object in the game world.
  *
+ * Modified by: Ng Jiunn Chieh 33590850
  */
 public abstract class Item extends GameEntity implements Printable {
 
