@@ -16,7 +16,7 @@ public class StateManager {
     private Map<Actor, ArrayList<ArrayList<State>>> recordedStates;
 
     /**
-     * Constructor for StateManager. Creates HashMap to store Actor and State key value pairs
+     * Constructor for StateManager. Creates HashMap to store Actor and ArrayList of an Arraylist of State key value pairs
      */
     public StateManager(){
         this.recordedStates = new HashMap<>();
@@ -25,7 +25,7 @@ public class StateManager {
     /**
      * Creates a State of the target for the copier to use against the target in the future. Depending on the
      * capabilities that the target has (e.g. a target may only be able to have their attributes copied, or a location,
-     * or maybe both) some aspects of their State will be recorded. The target and copier can be the same, so that the
+     * or maybe both,etc) some aspects of their State will be recorded. The target and copier can be the same, so that the
      * actor can create and use their state.
      * @param target the actor to copy state of
      * @param copier the actor that is doing the copying for their use against the target
@@ -67,12 +67,14 @@ public class StateManager {
             return copier + " has no recorded states to use";
         }
         ArrayList<State> stateToUse = this.recordedStates.get(copier).getLast();
+
         String message = "";
 
         for (State state : stateToUse){
             message += state.useState();
         }
 
+        this.recordedStates.get(copier).removeLast();
         return message;
     }
 
