@@ -362,10 +362,61 @@ public class GameMap {
                     projectileLocationX -= 1;
                 }
             }
-        }
+        } else {
+            // use y = mx + c to determine trajectory if it's not a horizontal or vertical line
+            float m = yDifference / xDifference;
+            float c = projectileLocationY - (m * projectileLocationX);
 
-        // use this for testing
-//        System.out.println("X: " + projectileLocationX + ", Y: " + projectileLocationY);
+            if (yDifference > 0){
+                // north-west trajectory
+                if (xDifference > 0) {
+                    System.out.println("north west");
+                    while (projectileLocationX > widths.min()) {
+                        projectileLocationX -= 1;
+                        projectileLocationY = (int)Math.floor((m * projectileLocationX) + c);
+                        if (projectileLocationY <= heights.min()) {
+                            projectileLocationY = heights.min();
+                            return at(projectileLocationX, projectileLocationY);
+                        }
+                    }
+                // north-east trajectory
+                } else if (xDifference < 0) {
+                    System.out.println("north east");
+                    while (projectileLocationX < widths.max()){
+                        projectileLocationX += 1;
+                        projectileLocationY = (int)Math.floor((m * projectileLocationX) + c);
+                        if (projectileLocationY <= heights.min()) {
+                            projectileLocationY = heights.min();
+                            return at(projectileLocationX, projectileLocationY);
+                        }
+                    }
+                }
+            } else if (yDifference < 0) {
+                // south-west trajectory
+                if (xDifference > 0) {
+                    System.out.println("south west");
+                    while (projectileLocationX > widths.min()) {
+                        projectileLocationX -= 1;
+                        projectileLocationY = (int)Math.ceil((m * projectileLocationX) + c);
+                        if (projectileLocationY >= heights.max()) {
+                            projectileLocationY = heights.max();
+                            return at(projectileLocationX, projectileLocationY);
+                        }
+                    }
+                // south-east trajectory
+                } else if (xDifference < 0) {
+                    System.out.println("south east");
+                    while (projectileLocationX < widths.max()){
+                        projectileLocationX += 1;
+                        projectileLocationY = (int)Math.ceil((m * projectileLocationX) + c);
+                        if (projectileLocationY >= heights.max()) {
+                            projectileLocationY = heights.max();
+                            return at(projectileLocationX, projectileLocationY);
+                        }
+                    }
+                }
+            }
+        }
 
         return at(projectileLocationX,projectileLocationY);
     }
