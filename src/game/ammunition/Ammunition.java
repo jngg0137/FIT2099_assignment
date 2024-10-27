@@ -103,10 +103,6 @@ public abstract class Ammunition extends Item {
                         ret.add(map.at(projectileLocationX,projectileLocationY));
                     }
                 }
-
-//                if (projectileLocationY > intendedLocation.y()){
-//                    projectileLocationY = intendedLocation.y() - 1;
-//                }
             } else if (yDifference < 0) {
                 // south-west trajectory
                 if (xDifference > 0) {
@@ -133,18 +129,8 @@ public abstract class Ammunition extends Item {
                         ret.add(map.at(projectileLocationX,projectileLocationY));
                     }
                 }
-
-//                if (projectileLocationY < intendedLocation.y()){
-//                    projectileLocationY = intendedLocation.y() + 1;
-//                }
             }
         }
-
-//        if (projectileLocationY < heights.min()){
-//            projectileLocationY = heights.min();
-//        } else if (projectileLocationY > heights.max()) {
-//            projectileLocationY = heights.max();
-//        }
 
         return ret;
     }
