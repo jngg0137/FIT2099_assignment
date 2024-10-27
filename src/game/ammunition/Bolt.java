@@ -1,7 +1,6 @@
 package game.ammunition;
 
 import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import game.actors.Ability;
@@ -11,7 +10,7 @@ import game.actors.Ability;
  *
  * @author Ng Jiunn Chieh 33590850
  */
-public class Bolt extends Item{
+public class Bolt extends Ammunition{
     private final int damage = 100;
     private final int knockback = 2;
 

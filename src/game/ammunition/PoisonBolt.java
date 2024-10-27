@@ -1,13 +1,12 @@
 package game.ammunition;
 
 import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import game.actors.Ability;
 import game.effects.Poison;
 
-public class PoisonBolt extends Item{
+public class PoisonBolt extends Ammunition{
     private final int damage = 80;
     private final int effectDuration = 20;
     private final Poison poison = new Poison(5,effectDuration);
