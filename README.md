@@ -24,7 +24,7 @@ Crossbow(🏹) ranged weapon
       for 40 turns
     - Fire PoisonBolt (¥) for 80 damage and inflict the 'Poison' status effect for 20 turns, can be picked 
     up if it collides with Wall (#)
-    - Fire Bolt(y) for 100 damage and push target 2 tiles back, can be picked up if it collides with Wall (#)
+    - Fire Bolt(y) for 100 damage can be picked up if it collides with Wall (#)
       
 ________________________________________________________________________________________________________
 Requirement 4 features: (not implemented)
