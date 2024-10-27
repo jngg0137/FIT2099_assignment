@@ -41,6 +41,6 @@ public class ReloadAction extends Action {
      */
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " reloads " + reloadableItem + " with " + ammunition + ".";
+        return actor + " loads " + reloadableItem + " with " + ammunition + ".";
     }
 }
