@@ -20,6 +20,7 @@ import game.items.GateItem;
 import game.items.Graveyard;
 import game.items.Spawner;
 import game.weaponarts.LifeSteal;
+import game.weaponarts.Memento;
 import game.weaponarts.QuickStep;
 import game.weapons.GreatKnife;
 import game.weapons.ShortSword;
@@ -126,7 +127,9 @@ public class Application {
         ShadowtreeFragment shadowtreeFragment5 = new ShadowtreeFragment("Shadowtree Fragment",'e');
         GreatKnife greatKnifeWithLifesteal = new GreatKnife("Great Knife (LifeSteal)", '†', 25, "slashes", 80, 5, new LifeSteal());
         GreatKnife greatKnifeWithQuickstep = new GreatKnife("Great Knife (Quickstep)", '†', 25, "slashes", 80,5, new QuickStep());
+        GreatKnife greatKnifeWithMemento = new GreatKnife("Great Knife (Memento)", '†', 25, "slashes", 80, 5, new Memento());
         ShortSword shortSwordWithQuickstep = new ShortSword("Shortsword (Quickstep)", '!', 30, "stabs", 85, 10,new QuickStep());
+
 
 
 
@@ -147,6 +150,7 @@ public class Application {
         gameMap.at(7,8).addItem(shortSwordWithQuickstep);
         gameMap.at(8,8).addItem(greatKnifeWithLifesteal);
         gameMap.at(9,8).addItem(greatKnifeWithQuickstep);
+        gameMap.at(10,8).addItem(greatKnifeWithMemento);
 
         // Single Gate with multiple destinations
         GateItem gateToBelurat = new GateItem("Gate", 'H', false);
@@ -173,21 +177,21 @@ public class Application {
         beluratTowerGameMap.at(2, 2).addItem(gateToGravesite);
         beluratSewersGameMap.at(4, 4).addItem(gateToGravesite);
 
-        // Add 5 graveyards to Belurat Tower
-        Spawner graveyardSpirit = new Spawner(new Graveyard(),new Spirit(),20);
-        beluratTowerGameMap.at(20,1).addItem(graveyardSpirit);
-        beluratTowerGameMap.at(25,1).addItem(graveyardSpirit);
-        beluratTowerGameMap.at(20,2).addItem(graveyardSpirit);
-        beluratTowerGameMap.at(25,2).addItem(graveyardSpirit);
-        beluratTowerGameMap.at(20,9).addItem(graveyardSpirit);
-
-        //Add 5 graveyards to Belurat Sewer
-        Spawner graveyardManFly = new Spawner(new Graveyard(), new ManFly(), 15);
-        beluratSewersGameMap.at(11,4).addItem(graveyardManFly);
-        beluratSewersGameMap.at(13,4).addItem(graveyardManFly);
-        beluratSewersGameMap.at(19,4).addItem(graveyardManFly);
-        beluratSewersGameMap.at(22,4).addItem(graveyardManFly);
-        beluratSewersGameMap.at(19,6).addItem(graveyardManFly);
+//        // Add 5 graveyards to Belurat Tower
+//        Spawner graveyardSpirit = new Spawner(new Graveyard(),new Spirit(),20);
+//        beluratTowerGameMap.at(20,1).addItem(graveyardSpirit);
+//        beluratTowerGameMap.at(25,1).addItem(graveyardSpirit);
+//        beluratTowerGameMap.at(20,2).addItem(graveyardSpirit);
+//        beluratTowerGameMap.at(25,2).addItem(graveyardSpirit);
+//        beluratTowerGameMap.at(20,9).addItem(graveyardSpirit);
+//
+//        //Add 5 graveyards to Belurat Sewer
+//        Spawner graveyardManFly = new Spawner(new Graveyard(), new ManFly(), 15);
+//        beluratSewersGameMap.at(11,4).addItem(graveyardManFly);
+//        beluratSewersGameMap.at(13,4).addItem(graveyardManFly);
+//        beluratSewersGameMap.at(19,4).addItem(graveyardManFly);
+//        beluratSewersGameMap.at(22,4).addItem(graveyardManFly);
+//        beluratSewersGameMap.at(19,6).addItem(graveyardManFly);
 
         // Start the game
         world.run();
