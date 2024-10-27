@@ -20,6 +20,7 @@ import edu.monash.fit2099.engine.items.Item;
 
 /**
  * SuspiciousTrader class, providing trade options to the player.
+ * @author Liew Zhe Xing 32619472
  */
 public class SuspiciousTrader extends Actor {
     private static final int HEALTH_POINTS = 10;      // Healing points per turn

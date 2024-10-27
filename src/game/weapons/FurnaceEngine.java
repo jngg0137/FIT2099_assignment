@@ -7,6 +7,14 @@ import game.grounds.Fire;
 import game.actors.Ability;
 import game.actors.FurnaceGolem;
 
+
+/**
+ *  Represents the FurnaceEngine
+ *  Tarnish is now able to use the FurnaceGolem's abilities after trading
+ *
+ * @author Liew Zhe Xing 32619472
+ */
+
 public class FurnaceEngine extends WeaponItem {
 
     public FurnaceEngine() {

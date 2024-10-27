@@ -14,6 +14,15 @@ import game.effects.AttributeRestoring;
 
 import java.util.List;
 
+/**
+ * Class representing the Player.
+ * Created by:
+ * @author Adrian Kristanto
+ * Modified by: Muhammad Hafiz Idlan Bin Hakimi
+ *              Liew Zhe Xing 32619472
+ *
+ */
+
 public class Player extends Actor {
 
     private Display display = new Display();
