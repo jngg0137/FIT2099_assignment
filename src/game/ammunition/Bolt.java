@@ -43,7 +43,7 @@ public class Bolt extends Item{
         }
         else
         {
-            Location projectileLocation  = map.calculateTrajectory(attacker,target);
+            Location projectileLocation  = map.calculateTrajectory(map.locationOf(attacker),map.locationOf(target));
             projectileLocation.addItem(this);
             return this + " misses " + target + " and lands at " + projectileLocation;
         }

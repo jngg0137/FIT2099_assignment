@@ -48,7 +48,7 @@ public class BurningBolt extends Item{
                     " and sets nearby tiles on fire.";
         }
         else {
-            Location projectileLocation  = map.calculateTrajectory(attacker,target);
+            Location projectileLocation  = map.calculateTrajectory(map.locationOf(attacker),map.locationOf(target));
             for (Exit exit : projectileLocation.getExits()) {
                 Ground groundAffected = exit.getDestination().getGround();
 
