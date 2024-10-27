@@ -34,6 +34,7 @@ public class Player extends Actor {
         this.addAttribute(BaseActorAttributes.MANA, new BaseActorAttribute(100));
         this.addAttribute(ExtraActorAttributes.STRENGTH, new BaseActorAttribute(5));
         this.addCapability(Ability.ENTER_FLOOR);
+        this.addCapability(CopyableState.ATTRIBUTES);
         this.setIntrinsicWeapon(new BareFist());
     }
 
