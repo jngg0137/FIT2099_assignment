@@ -3,6 +3,7 @@ package game.ammunition;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
+import edu.monash.fit2099.engine.positions.Location;
 import game.actors.Ability;
 
 /**
@@ -42,7 +43,9 @@ public class Bolt extends Item{
         }
         else
         {
-            return "";
+            Location projectileLocation  = map.calculateTrajectory(attacker,target);
+            projectileLocation.addItem(this);
+            return this + " misses " + target + " and lands at " + projectileLocation;
         }
     }
 }

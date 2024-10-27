@@ -323,6 +323,54 @@ public class GameMap {
     }
 
     /**
+     * Calculates the predicted tile a projectile should land when it
+     * keeps moving in a certain direction
+     *
+     * @param attacker  actor that fired the projectile
+     * @param target    intended target
+     * @return          location the projectile should land on
+     */
+    public Location calculateTrajectory(Actor attacker, Actor target){
+        Location attackerLocation = locationOf(attacker);
+        Location targetLocation = locationOf(target);
+        int projectileLocationX = attackerLocation.x();
+        int projectileLocationY = attackerLocation.y();
+        int xDifference = attackerLocation.x() - targetLocation.x();
+        int yDifference = attackerLocation.y() - targetLocation.y();
+
+        if (xDifference == 0){
+            // north trajectory
+            if (yDifference > 0){
+                while (projectileLocationY > heights.min()){
+                    projectileLocationY -= 1;
+                }
+            // south trajectory
+            } else if (yDifference < 0) {
+                while (projectileLocationY < heights.max()){
+                    projectileLocationY += 1;
+                }
+            }
+        } else if (yDifference == 0) {
+            // west trajectory
+            if (xDifference < 0){
+                while (projectileLocationX < widths.max()){
+                    projectileLocationX += 1;
+                }
+            // east trajectory
+            } else if (xDifference > 0) {
+                while (projectileLocationX > widths.min()){
+                    projectileLocationX -= 1;
+                }
+            }
+        }
+
+        // use this for testing
+//        System.out.println("X: " + projectileLocationX + ", Y: " + projectileLocationY);
+
+        return at(projectileLocationX,projectileLocationY);
+    }
+
+    /**
      * The toString method of the GameMap class should only print out its name, e.g. Caelid
      *
      * @return the name of the current game map
