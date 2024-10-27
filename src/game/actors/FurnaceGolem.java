@@ -40,7 +40,7 @@ public class FurnaceGolem extends Actor {
      * Constructor for the FurnaceGolem class
      */
     public FurnaceGolem() {
-        super("Furnace Golem", 'A', 100);
+        super("Furnace Golem", 'A', 10);
         this.behaviours.put(wanderBehaviourPriority, new WanderBehaviour());
         this.setIntrinsicWeapon(new FurnaceGolemLeg());
         this.addCapability(Ability.IMMUNE_TO_BURNING);
@@ -98,6 +98,11 @@ public class FurnaceGolem extends Actor {
         display.println(this + " has been defeated and dropped the Remembrance of the Furnace Golem!");
 
         return super.unconscious(map);
+    }
+
+    @Override
+    public String unconscious(Actor actor, GameMap map) {
+        return unconscious(map);
     }
 
 }
