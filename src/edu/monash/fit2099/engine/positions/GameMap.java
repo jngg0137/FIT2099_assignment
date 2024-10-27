@@ -331,8 +331,8 @@ public class GameMap {
      * @return          location the projectile should land on
      */
     public Location calculateTrajectory(Location originalLocation, Location intendedLocation){
-        int projectileLocationX = originalLocation.x();
-        int projectileLocationY = originalLocation.y();
+        int projectileLocationX = intendedLocation.x();
+        int projectileLocationY = intendedLocation.y();
         int xDifference = originalLocation.x() - intendedLocation.x();
         int yDifference = originalLocation.y() - intendedLocation.y();
 
@@ -362,16 +362,14 @@ public class GameMap {
             }
         } else {
             // use y = mx + c to determine trajectory if it's not a horizontal or vertical line
-            float m = yDifference / xDifference;
+            float m = (float) yDifference / xDifference;
             float c = projectileLocationY - (m * projectileLocationX);
-
             if (yDifference > 0){
                 // north-west trajectory
                 if (xDifference > 0) {
                     while (projectileLocationX > widths.min()) {
                         projectileLocationX -= 1;
                         projectileLocationY = (int) Math.floor((m * projectileLocationX) + c);
-                        System.out.println(projectileLocationX + "," + projectileLocationY);
                         if (projectileLocationY < heights.min()) {
                             projectileLocationY = heights.min();
                             return at(projectileLocationX, projectileLocationY);
@@ -382,7 +380,6 @@ public class GameMap {
                     while (projectileLocationX < widths.max()){
                         projectileLocationX += 1;
                         projectileLocationY = (int) Math.floor((m * projectileLocationX) + c);
-                        System.out.println(projectileLocationX + "," + projectileLocationY);
                         if (projectileLocationY < heights.min()) {
                             projectileLocationY = heights.min();
                             return at(projectileLocationX, projectileLocationY);
@@ -399,7 +396,6 @@ public class GameMap {
                     while (projectileLocationX > widths.min()) {
                         projectileLocationX -= 1;
                         projectileLocationY = (int) Math.ceil((m * projectileLocationX) + c);
-                        System.out.println(projectileLocationX + "," + projectileLocationY);
                         if (projectileLocationY > heights.max()) {
                             projectileLocationY = heights.max();
                             return at(projectileLocationX, projectileLocationY);
@@ -410,7 +406,6 @@ public class GameMap {
                     while (projectileLocationX < widths.max()){
                         projectileLocationX += 1;
                         projectileLocationY = (int) Math.ceil((m * projectileLocationX) + c);
-                        System.out.println(projectileLocationX + "," + projectileLocationY);
                         if (projectileLocationY > heights.max()) {
                             projectileLocationY = heights.max();
                             return at(projectileLocationX, projectileLocationY);
