@@ -40,9 +40,7 @@ public class Bolt extends Ammunition{
                 map.locationOf(target));
         if (hitTarget && projectileLocations.contains(map.locationOf(target))) {
             target.hurt(damage);
-            //for now doesn't push enemies back
-            return this + " hits " + target + " for " + damage +
-                    " and pushed them back " + knockback + " tiles.";
+            return this + " hits " + target + " for " + damage + " damage.";
         }
         else
         {
