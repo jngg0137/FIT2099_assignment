@@ -14,7 +14,7 @@ public class ReloadAction extends Action {
      * Constructor
      *
      * @param reloadableItem    the item to be loaded with given ammunition
-     * @param ammunition        the item that is being loaded
+     * @param ammunition        the ammunition that is being loaded into the item
      */
     public ReloadAction(ReloadableItem reloadableItem, Item ammunition){
         this.reloadableItem = reloadableItem;
