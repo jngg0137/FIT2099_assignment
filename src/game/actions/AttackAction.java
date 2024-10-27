@@ -4,6 +4,7 @@ import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.Weapon;
+import game.actors.SuspiciousTrader;
 
 /**
  * Class representing an action to attack
@@ -11,6 +12,8 @@ import edu.monash.fit2099.engine.weapons.Weapon;
  * an intrinsic weapon or a weapon item.
  * Otherwise, the execute method will throw an error.
  * @author Adrian Kristanto
+ * Modified by : Hafiz
+ *               Liew Zhe Xing 32619472
  */
 public class AttackAction extends Action {
 
@@ -60,6 +63,11 @@ public class AttackAction extends Action {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
+        if (target instanceof SuspiciousTrader) {
+            return target + " cannot be attacked.";
+        }
+
+
         if (weapon == null) {
             weapon = actor.getIntrinsicWeapon();
         }
