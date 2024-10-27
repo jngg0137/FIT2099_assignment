@@ -31,6 +31,7 @@ public class Puddle extends Ground implements Consumable {
     public Puddle() {
         super('~', "Puddle");
         this.addCapability(Ability.IMMUNE_TO_BURNING);
+        this.addCapability(GroundCapability.WATER);
     }
 
     /**

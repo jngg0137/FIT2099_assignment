@@ -8,10 +8,7 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.FancyGroundFactory;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.World;
-import game.actors.FurnaceGolem;
-import game.actors.ManFly;
-import game.actors.Player;
-import game.actors.Spirit;
+import game.actors.*;
 import game.grounds.*;
 import game.consumables.FlaskOfHealing;
 import game.consumables.FlaskOfRejuvenation;
@@ -104,6 +101,19 @@ public class Application {
                 beluratSewersGroundFactory, beluratSewersMap);
         world.addGameMap(beluratSewersGameMap);
 
+        List<String> stagefrontMap = Arrays.asList(
+                "#################",
+                "#~~~..........~~#",
+                "#~~~...........~#",
+                "#~~.............#",
+                "#............~~~#",
+                "#..........~~~~~#",
+                "#######...#######"
+        );
+
+        GameMap stagefrontGameMap = new GameMap("Stagefront", groundFactory, stagefrontMap);
+        world.addGameMap(stagefrontGameMap);
+
         // BEHOLD, ELDEN THING!
         for (String line : FancyMessage.TITLE.split("\n")) {
             new Display().println(line);
@@ -128,13 +138,12 @@ public class Application {
         GreatKnife greatKnifeWithQuickstep = new GreatKnife("Great Knife (Quickstep)", '†', 25, "slashes", 80,5, new QuickStep());
         ShortSword shortSwordWithQuickstep = new ShortSword("Shortsword (Quickstep)", '!', 30, "stabs", 85, 10,new QuickStep());
 
-
-
         // Add player to the game map
         world.addPlayer(player, gameMap.at(7, 4));
 
         // Add actors and items to the Gravesite Plain map
         gameMap.at(42, 4).addActor(new FurnaceGolem());
+        stagefrontGameMap.at(13, 4).addActor(new DivineBeastDancingLion(beluratTowerGameMap)); // Adjust coordinates as needed
         gameMap.at(0,9).addItem(shortSword);
         gameMap.at(1,9).addItem(greatKnife);
         gameMap.at(7,5).addItem(flaskOfHealing);
@@ -172,6 +181,13 @@ public class Application {
         // Add gate to the Belurat maps
         beluratTowerGameMap.at(2, 2).addItem(gateToGravesite);
         beluratSewersGameMap.at(4, 4).addItem(gateToGravesite);
+
+        // Create a gate to Stagefront
+        GateItem gateToStagefront = new GateItem("Gate to Stagefront", 'H', false);
+        gateToStagefront.addGateAction(new MoveActorAction(stagefrontGameMap.at(1, 3), "to Stagefront"));
+
+        // Place the gate in Belurat, Tower Settlement
+        beluratTowerGameMap.at(15, 0).addItem(gateToStagefront);
 
         // Add 5 graveyards to Belurat Tower
         Spawner graveyardSpirit = new Spawner(new Graveyard(),new Spirit(),20);
