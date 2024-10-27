@@ -8,6 +8,8 @@ import edu.monash.fit2099.engine.positions.Location;
 import game.actors.Ability;
 import game.grounds.Fire;
 
+import java.util.List;
+
 public class BurningBolt extends Ammunition{
     private final int damage = 80;
 
@@ -31,7 +33,9 @@ public class BurningBolt extends Ammunition{
      */
     @Override
     public String rangedEffect(Actor attacker, Actor target, GameMap map, boolean hitTarget) {
-        if (hitTarget) {
+        List<Location> projectileLocations = super.calculateTrajectory(map.locationOf(attacker),
+                map.locationOf(target));
+        if (hitTarget && projectileLocations.contains(map.locationOf(target))) {
             target.hurt(damage);
             Location targetLocation = map.locationOf(target);
 
@@ -47,7 +51,7 @@ public class BurningBolt extends Ammunition{
                     " and sets nearby tiles on fire.";
         }
         else {
-            Location projectileLocation = super.calculateTrajectory(map.locationOf(attacker),map.locationOf(target)).getLast();
+            Location projectileLocation = projectileLocations.getLast();
             for (Exit exit : projectileLocation.getExits()) {
                 Ground groundAffected = exit.getDestination().getGround();
 
@@ -55,7 +59,7 @@ public class BurningBolt extends Ammunition{
                     exit.getDestination().setGround(new Fire(40, groundAffected));
                 }
             }
-            return this + " misses " + target + " and lands at " + projectileLocation +
+            return this + " fails to hit " + target + " and lands at " + projectileLocation +
                     ", setting its surroundings on fire.";
         }
     }

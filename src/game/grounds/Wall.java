@@ -8,6 +8,7 @@ import edu.monash.fit2099.engine.positions.Ground;
  * Created by:
  * @author Riordan D. Alfredo
  * Modified by: Muhammad Hafiz Idlan Bin Hakimi
+ *              Ng Jiunn Chieh 33590850
  *
  */
 public class Wall extends Ground {
@@ -27,5 +28,15 @@ public class Wall extends Ground {
     @Override
     public boolean canActorEnter(Actor actor) {
         return false;
+    }
+
+    /**
+     * Prevents projectiles from passing through this
+     *
+     * @return  true
+     */
+    @Override
+    public boolean blocksThrownObjects() {
+        return true;
     }
 }

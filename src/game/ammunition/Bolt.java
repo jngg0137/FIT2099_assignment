@@ -5,6 +5,8 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import game.actors.Ability;
 
+import java.util.List;
+
 /**
  * Class which represents the base ammunition for the crossbow
  *
@@ -34,7 +36,9 @@ public class Bolt extends Ammunition{
      */
     @Override
     public String rangedEffect(Actor attacker, Actor target, GameMap map, boolean hitTarget) {
-        if (hitTarget) {
+        List<Location> projectileLocations = super.calculateTrajectory(map.locationOf(attacker),
+                map.locationOf(target));
+        if (hitTarget && projectileLocations.contains(map.locationOf(target))) {
             target.hurt(damage);
             //for now doesn't push enemies back
             return this + " hits " + target + " for " + damage +
@@ -42,9 +46,8 @@ public class Bolt extends Ammunition{
         }
         else
         {
-            Location projectileLocation = super.calculateTrajectory(map.locationOf(attacker),map.locationOf(target)).getLast();
-            projectileLocation.addItem(this);
-            return this + " misses " + target + " and lands at " + projectileLocation;
+            projectileLocations.getLast().addItem(this);
+            return this + " fails to hit " + target + " and lands at " + projectileLocations.getLast();
         }
     }
 }

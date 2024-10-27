@@ -37,11 +37,12 @@ public abstract class Ammunition extends Item {
      */
     public List<Location> calculateTrajectory(Location originalLocation, Location intendedLocation){
         List<Location> ret = new ArrayList<>();
+        ret.add(originalLocation);
         GameMap map = originalLocation.map();
         NumberRange heights = map.getYRange();
         NumberRange widths = map.getXRange();
-        int projectileLocationX = intendedLocation.x();
-        int projectileLocationY = intendedLocation.y();
+        int projectileLocationX = originalLocation.x();
+        int projectileLocationY = originalLocation.y();
         int xDifference = originalLocation.x() - intendedLocation.x();
         int yDifference = originalLocation.y() - intendedLocation.y();
 
@@ -50,12 +51,18 @@ public abstract class Ammunition extends Item {
             if (yDifference > 0){
                 while (projectileLocationY > heights.min()){
                     projectileLocationY -= 1;
+                    if (canPassThrough(map.at(projectileLocationX,projectileLocationY))){
+                        return ret;
+                    }
                     ret.add(map.at(projectileLocationX,projectileLocationY));
                 }
                 // south trajectory
             } else if (yDifference < 0) {
                 while (projectileLocationY < heights.max()){
                     projectileLocationY += 1;
+                    if (canPassThrough(map.at(projectileLocationX,projectileLocationY))){
+                        return ret;
+                    }
                     ret.add(map.at(projectileLocationX,projectileLocationY));
                 }
             }
@@ -64,12 +71,18 @@ public abstract class Ammunition extends Item {
             if (xDifference < 0){
                 while (projectileLocationX < widths.max()){
                     projectileLocationX += 1;
+                    if (canPassThrough(map.at(projectileLocationX,projectileLocationY))){
+                        return ret;
+                    }
                     ret.add(map.at(projectileLocationX,projectileLocationY));
                 }
                 // east trajectory
             } else if (xDifference > 0) {
                 while (projectileLocationX > widths.min()){
                     projectileLocationX -= 1;
+                    if (canPassThrough(map.at(projectileLocationX,projectileLocationY))){
+                        return ret;
+                    }
                     ret.add(map.at(projectileLocationX,projectileLocationY));
                 }
             }
@@ -87,6 +100,8 @@ public abstract class Ammunition extends Item {
                             projectileLocationY = heights.min();
                             ret.add(map.at(projectileLocationX,projectileLocationY));
                             return ret;
+                        } else if (canPassThrough(map.at(projectileLocationX,projectileLocationY))){
+                            return ret;
                         }
                         ret.add(map.at(projectileLocationX,projectileLocationY));
                     }
@@ -98,6 +113,8 @@ public abstract class Ammunition extends Item {
                         if (projectileLocationY < heights.min()) {
                             projectileLocationY = heights.min();
                             ret.add(map.at(projectileLocationX,projectileLocationY));
+                            return ret;
+                        } else if (canPassThrough(map.at(projectileLocationX,projectileLocationY))){
                             return ret;
                         }
                         ret.add(map.at(projectileLocationX,projectileLocationY));
@@ -113,6 +130,8 @@ public abstract class Ammunition extends Item {
                             projectileLocationY = heights.max();
                             ret.add(map.at(projectileLocationX,projectileLocationY));
                             return ret;
+                        } else if (canPassThrough(map.at(projectileLocationX,projectileLocationY))){
+                            return ret;
                         }
                         ret.add(map.at(projectileLocationX,projectileLocationY));
                     }
@@ -125,6 +144,8 @@ public abstract class Ammunition extends Item {
                             projectileLocationY = heights.max();
                             ret.add(map.at(projectileLocationX,projectileLocationY));
                             return ret;
+                        } else if (canPassThrough(map.at(projectileLocationX,projectileLocationY))){
+                            return ret;
                         }
                         ret.add(map.at(projectileLocationX,projectileLocationY));
                     }
@@ -133,6 +154,16 @@ public abstract class Ammunition extends Item {
         }
 
         return ret;
+    }
+
+    /**
+     * Returns whether this item can pass through a location
+     *
+     * @param location  location to pass through
+     * @return  whether this item can pass through this location
+     */
+    public boolean canPassThrough(Location location){
+        return location.getGround().blocksThrownObjects();
     }
 
     /**
