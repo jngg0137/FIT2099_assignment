@@ -5,6 +5,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import game.actors.SuspiciousTrader;
+import game.actors.Status;
 
 /**
  * Class representing an action to attack
@@ -63,7 +64,7 @@ public class AttackAction extends Action {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
-        if (target instanceof SuspiciousTrader) {
+        if (target.hasCapability(Status.NON_ATTACKABLE)) {
             return target + " cannot be attacked.";
         }
 

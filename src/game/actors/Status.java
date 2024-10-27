@@ -11,4 +11,5 @@ public enum Status {
      * Indicates whether an actor is hostile to the enemy
      */
     HOSTILE_TO_ENEMY,
+    NON_ATTACKABLE
 }

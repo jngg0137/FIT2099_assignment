@@ -31,6 +31,7 @@ public class SuspiciousTrader extends Actor {
      */
     public SuspiciousTrader() {
         super("Suspicious Trader", 'ඞ', 1000);
+        this.addCapability(Status.NON_ATTACKABLE);
     }
 
     /**
