@@ -4,5 +4,3 @@ a list of locations within given grid range
 - Extend World class' processActorTurn() method to also call Item class' allowableRangedActions() method
 - Add new method, rangedEffect() in Item class to define what happens to the user, target or both when the target is hit 
 by this item via ranged attack
-- Add new method calculateTrajectory() in GameMap class to predict the tile a projectile should land based on target
-direction

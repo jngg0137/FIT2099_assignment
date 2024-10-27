@@ -42,7 +42,7 @@ public class Bolt extends Ammunition{
         }
         else
         {
-            Location projectileLocation  = map.calculateTrajectory(map.locationOf(attacker),map.locationOf(target));
+            Location projectileLocation  = super.calculateTrajectory(map.locationOf(attacker),map.locationOf(target));
             projectileLocation.addItem(this);
             return this + " misses " + target + " and lands at " + projectileLocation;
         }
