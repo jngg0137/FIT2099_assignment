@@ -39,7 +39,7 @@ public class PoisonBolt extends Ammunition{
         }
         else
         {
-            Location projectileLocation = super.calculateTrajectory(map.locationOf(attacker),map.locationOf(target));
+            Location projectileLocation = super.calculateTrajectory(map.locationOf(attacker),map.locationOf(target)).getLast();
             projectileLocation.addItem(this);
             return this + " misses " + target + " and lands at " + projectileLocation;
         }

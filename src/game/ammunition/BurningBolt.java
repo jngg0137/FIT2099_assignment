@@ -47,7 +47,7 @@ public class BurningBolt extends Ammunition{
                     " and sets nearby tiles on fire.";
         }
         else {
-            Location projectileLocation  = super.calculateTrajectory(map.locationOf(attacker),map.locationOf(target));
+            Location projectileLocation = super.calculateTrajectory(map.locationOf(attacker),map.locationOf(target)).getLast();
             for (Exit exit : projectileLocation.getExits()) {
                 Ground groundAffected = exit.getDestination().getGround();
 

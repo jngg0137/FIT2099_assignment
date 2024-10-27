@@ -6,6 +6,9 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.positions.NumberRange;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Class that represents items that can be used as ammunition by other items
  *
@@ -25,14 +28,15 @@ public abstract class Ammunition extends Item {
     }
 
     /**
-     * Calculates the predicted tile a projectile should land when it
-     * keeps moving in a certain direction
+     * Determines and returns the locations the projectile will traverse whilst trying to reach the location
+     * it targeted
      *
      * @param originalLocation  location the projectile was fired from
-     * @param intendedLocation  location the projectile was targetting
+     * @param intendedLocation  location the projectile was targeting
      * @return          location the projectile should land on
      */
-    public Location calculateTrajectory(Location originalLocation, Location intendedLocation){
+    public List<Location> calculateTrajectory(Location originalLocation, Location intendedLocation){
+        List<Location> ret = new ArrayList<>();
         GameMap map = originalLocation.map();
         NumberRange heights = map.getYRange();
         NumberRange widths = map.getXRange();
@@ -46,11 +50,13 @@ public abstract class Ammunition extends Item {
             if (yDifference > 0){
                 while (projectileLocationY > heights.min()){
                     projectileLocationY -= 1;
+                    ret.add(map.at(projectileLocationX,projectileLocationY));
                 }
                 // south trajectory
             } else if (yDifference < 0) {
                 while (projectileLocationY < heights.max()){
                     projectileLocationY += 1;
+                    ret.add(map.at(projectileLocationX,projectileLocationY));
                 }
             }
         } else if (yDifference == 0) {
@@ -58,11 +64,13 @@ public abstract class Ammunition extends Item {
             if (xDifference < 0){
                 while (projectileLocationX < widths.max()){
                     projectileLocationX += 1;
+                    ret.add(map.at(projectileLocationX,projectileLocationY));
                 }
                 // east trajectory
             } else if (xDifference > 0) {
                 while (projectileLocationX > widths.min()){
                     projectileLocationX -= 1;
+                    ret.add(map.at(projectileLocationX,projectileLocationY));
                 }
             }
         } else {
@@ -77,8 +85,10 @@ public abstract class Ammunition extends Item {
                         projectileLocationY = (int) Math.floor((m * projectileLocationX) + c);
                         if (projectileLocationY < heights.min()) {
                             projectileLocationY = heights.min();
-                            return map.at(projectileLocationX, projectileLocationY);
+                            ret.add(map.at(projectileLocationX,projectileLocationY));
+                            return ret;
                         }
+                        ret.add(map.at(projectileLocationX,projectileLocationY));
                     }
                     // north-east trajectory
                 } else if (xDifference < 0) {
@@ -87,14 +97,16 @@ public abstract class Ammunition extends Item {
                         projectileLocationY = (int) Math.floor((m * projectileLocationX) + c);
                         if (projectileLocationY < heights.min()) {
                             projectileLocationY = heights.min();
-                            return map.at(projectileLocationX, projectileLocationY);
+                            ret.add(map.at(projectileLocationX,projectileLocationY));
+                            return ret;
                         }
+                        ret.add(map.at(projectileLocationX,projectileLocationY));
                     }
                 }
 
-                if (projectileLocationY > intendedLocation.y()){
-                    projectileLocationY = intendedLocation.y() - 1;
-                }
+//                if (projectileLocationY > intendedLocation.y()){
+//                    projectileLocationY = intendedLocation.y() - 1;
+//                }
             } else if (yDifference < 0) {
                 // south-west trajectory
                 if (xDifference > 0) {
@@ -103,8 +115,10 @@ public abstract class Ammunition extends Item {
                         projectileLocationY = (int) Math.ceil((m * projectileLocationX) + c);
                         if (projectileLocationY > heights.max()) {
                             projectileLocationY = heights.max();
-                            return map.at(projectileLocationX, projectileLocationY);
+                            ret.add(map.at(projectileLocationX,projectileLocationY));
+                            return ret;
                         }
+                        ret.add(map.at(projectileLocationX,projectileLocationY));
                     }
                     // south-east trajectory
                 } else if (xDifference < 0) {
@@ -113,24 +127,26 @@ public abstract class Ammunition extends Item {
                         projectileLocationY = (int) Math.ceil((m * projectileLocationX) + c);
                         if (projectileLocationY > heights.max()) {
                             projectileLocationY = heights.max();
-                            return map.at(projectileLocationX, projectileLocationY);
+                            ret.add(map.at(projectileLocationX,projectileLocationY));
+                            return ret;
                         }
+                        ret.add(map.at(projectileLocationX,projectileLocationY));
                     }
                 }
 
-                if (projectileLocationY < intendedLocation.y()){
-                    projectileLocationY = intendedLocation.y() + 1;
-                }
+//                if (projectileLocationY < intendedLocation.y()){
+//                    projectileLocationY = intendedLocation.y() + 1;
+//                }
             }
         }
 
-        if (projectileLocationY < heights.min()){
-            projectileLocationY = heights.min();
-        } else if (projectileLocationY > heights.max()) {
-            projectileLocationY = heights.max();
-        }
+//        if (projectileLocationY < heights.min()){
+//            projectileLocationY = heights.min();
+//        } else if (projectileLocationY > heights.max()) {
+//            projectileLocationY = heights.max();
+//        }
 
-        return map.at(projectileLocationX,projectileLocationY);
+        return ret;
     }
 
     /**
