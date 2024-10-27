@@ -52,7 +52,7 @@ public class Memento implements WeaponArt{
         int snapshotChance = 50;
 
         if (rand.nextInt(100) < snapshotChance){
-            message = stateManager.createStateBasedOfTargetForCopier(attacker,attacker);
+            message = stateManager.createStateBasedOfTargetForCopier(attacker,attacker,map);
         }
         else {
             message = stateManager.useLastRecordedStateFromCopier(attacker);

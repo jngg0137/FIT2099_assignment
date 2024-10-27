@@ -1,6 +1,7 @@
 package game.actors;
 
 import edu.monash.fit2099.engine.actors.Actor;
+import edu.monash.fit2099.engine.positions.GameMap;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,9 +29,10 @@ public class StateManager {
      * actor can create and use their state.
      * @param target the actor to copy state of
      * @param copier the actor that is doing the copying for their use against the target
+     * @param map the map in which the actors are in
      * @return a String indicating whether the state has been copied or not
      */
-    public String createStateBasedOfTargetForCopier(Actor target, Actor copier){
+    public String createStateBasedOfTargetForCopier(Actor target, Actor copier, GameMap map){
 
         if (target.findCapabilitiesByType(CopyableState.class).isEmpty()){
             return target + " does not have the capability for their states to be copied";
