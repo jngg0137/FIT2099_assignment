@@ -12,7 +12,7 @@ import game.actors.SuspiciousTrader;
  * an intrinsic weapon or a weapon item.
  * Otherwise, the execute method will throw an error.
  * @author Adrian Kristanto
- * Modified by : Hafiz
+ * Modified by : Muhammad Hafiz Idlan Bin Hakimi
  *               Liew Zhe Xing 32619472
  */
 public class AttackAction extends Action {
