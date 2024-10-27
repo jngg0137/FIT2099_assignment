@@ -29,7 +29,7 @@ public class Bolt extends Ammunition{
      * @param attacker actor using this ammunition
      * @param target   actor being attacked
      * @param map      map this ammunition is used
-     * @param hitTarget	was the target hit
+     * @param hitTarget	should the target get hit
      * @return a description of what occurs when using this ammunition
      */
     @Override

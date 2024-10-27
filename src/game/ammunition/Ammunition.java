@@ -141,7 +141,7 @@ public abstract class Ammunition extends Item {
      * @param attacker  actor using this item
      * @param target    actor being attacked
      * @param map       map this item is used
-     * @param hitTarget	was the target hit
+     * @param hitTarget	should the target get hit
      * @return          a description of what occurs when using this item
      */
     @Override
