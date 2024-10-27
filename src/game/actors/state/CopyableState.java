@@ -1,4 +1,4 @@
-package game.actors;
+package game.actors.state;
 
 /**
  * Use this enum to represent what states of an Actor can be copied (e.g Status Effects, Location, Attributes,etc)

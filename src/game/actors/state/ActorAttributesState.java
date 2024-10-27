@@ -1,8 +1,9 @@
-package game.actors;
+package game.actors.state;
 
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.actors.attributes.ActorAttributeOperations;
 import edu.monash.fit2099.engine.actors.attributes.BaseActorAttributes;
+import game.actors.ExtraActorAttributes;
 
 import java.util.HashMap;
 import java.util.Map;

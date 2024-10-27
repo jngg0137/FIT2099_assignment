@@ -3,7 +3,7 @@ package game.weaponarts;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.actors.attributes.BaseActorAttributes;
 import edu.monash.fit2099.engine.positions.GameMap;
-import game.actors.StateManager;
+import game.actors.state.StateManager;
 
 import java.util.Random;
 
