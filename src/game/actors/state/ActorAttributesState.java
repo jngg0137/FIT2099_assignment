@@ -17,7 +17,7 @@ public class ActorAttributesState extends State {
 
     /**
      * Constructor. Takes the attributes that the actor has with corresponding values and records it.
-     * @param target
+     * @param target the actor whose state is recorded
      */
     public ActorAttributesState(Actor target) {
         super(target);
