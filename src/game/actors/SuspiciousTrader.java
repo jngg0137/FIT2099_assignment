@@ -4,6 +4,7 @@ import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
+import edu.monash.fit2099.engine.actors.attributes.ActorAttributeOperations;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
@@ -20,8 +21,10 @@ import edu.monash.fit2099.engine.items.Item;
  * @author Liew Zhe Xing 32619472
  */
 public class SuspiciousTrader extends Actor {
-    private static final int HEALTH_POINTS = 10;      // Healing points per turn
-    private static final int RESTORING_DURATION = 3;  // Duration for healing over time effect
+    private static final int HEALTH_POINTS_FURNACE_ENGINE = 30;
+    private static final int RESTORING_DURATION_FURNACE_ENGINE = 5;
+    private static final int HEALTH_POINTS_DIVINE_BEAST_HEAD = 50;
+    private static final int MANA_POINTS_DIVINE_BEAST_HEAD = 100;
 
     /**
      * Constructor for SuspiciousTrader
@@ -43,12 +46,19 @@ public class SuspiciousTrader extends Actor {
 
             if (remembrance.hasCapability(Ability.TRADE_DIVINE_BEAST_HEAD)) {
                 player.addItemToInventory(new DivineBeastHead());
-                player.increaseMaxHealth(50);
-                player.increaseMaxMana(100);
+                int currentHealth = player.getAttribute(BaseActorAttributes.HEALTH);
+                player.modifyAttributeMaximum(BaseActorAttributes.HEALTH, ActorAttributeOperations.INCREASE,HEALTH_POINTS_DIVINE_BEAST_HEAD);
+                player.modifyAttribute(BaseActorAttributes.HEALTH,ActorAttributeOperations.UPDATE,currentHealth);
+                player.heal(HEALTH_POINTS_DIVINE_BEAST_HEAD);
+
+                int currentMana = player.getAttribute(BaseActorAttributes.MANA);
+                player.modifyAttributeMaximum(BaseActorAttributes.MANA,ActorAttributeOperations.INCREASE,MANA_POINTS_DIVINE_BEAST_HEAD);
+                player.modifyAttribute(BaseActorAttributes.MANA,ActorAttributeOperations.UPDATE,currentMana);
+                player.modifyAttribute(BaseActorAttributes.MANA,ActorAttributeOperations.INCREASE,MANA_POINTS_DIVINE_BEAST_HEAD);
                 return "You traded the Remembrance of the Dancing Lion for the Divine Beast Head!";
             } else if (remembrance.hasCapability(Ability.TRADE_FURNACE_ENGINE)) {
                 player.addItemToInventory(new FurnaceEngine());
-                player.addStatusEffect(new AttributeRestoring(BaseActorAttributes.HEALTH, RESTORING_DURATION, HEALTH_POINTS));
+                player.addStatusEffect(new AttributeRestoring(BaseActorAttributes.HEALTH, RESTORING_DURATION_FURNACE_ENGINE, HEALTH_POINTS_FURNACE_ENGINE));
                 return "You traded the Remembrance of the Furnace Golem for the Furnace Engine! Health will be restored over time.";
             } else {
                 return "The trader cannot trade this item.";
