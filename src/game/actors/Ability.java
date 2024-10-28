@@ -17,5 +17,9 @@ public enum Ability {
     /**
      * Indicates whether an actor can be poisoned
      */
-    IMMUNE_TO_POISON
+    IMMUNE_TO_POISON,
+    /**
+     * Indicates whether an item can be loaded into an item that uses bolts
+     */
+    LOADABLE_BOLTS,
 }

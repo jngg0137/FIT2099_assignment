@@ -11,6 +11,8 @@ import java.util.*;
 /**
  * Class representing a location in the game map.  This includes keeping track of exits,
  * character representation, terrain type, and other game data.
+ *
+ * Modified by: Ng Jiunn Chieh 33590850
  */
 public class Location implements Printable {
 
@@ -221,6 +223,54 @@ public class Location implements Printable {
      */
     public List<Exit> getExits() {
         return Collections.unmodifiableList(exits);
+    }
+
+    /**
+     * Returns an unmodifiable list of locations within given grid range
+     *
+     * @param grid  the grid range in the form of an odd number
+     * @return      an unmodifiable list of locations surrounding a location
+     *              within grid x grid range. Return null if grid range is invalid
+     */
+    public List<Location> getSurroundingLocations(int grid){
+        if (grid < 4){
+            return null;
+        }
+
+        int radius = (grid - 1)/2;
+        List<Location> ret = new ArrayList<>();
+        NumberRange xrange = map.getXRange();
+        NumberRange yrange = map.getYRange();
+        int xMin = x - radius;
+        int xMax = x + radius;
+        int yMin = y - radius;
+        int yMax = y + radius;
+
+        if (xMin < xrange.min()) {
+            xMin = xrange.min();
+        }
+
+        if (xMax > xrange.max()) {
+            xMax = xrange.max();
+        }
+
+        if (yMin < yrange.min()){
+            yMin = yrange.min();
+        }
+
+        if (yMax > yrange.max()){
+            yMax = yrange.max();
+        }
+
+        for (int i = yMin; i <= yMax; i++){
+            for (int o = xMin; o <= xMax; o++){
+                Location location = map.at(o,i);
+                if (location != this){
+                    ret.add(location);
+                }
+            }
+        }
+        return Collections.unmodifiableList(ret);
     }
 
     /**

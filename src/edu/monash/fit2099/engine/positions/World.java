@@ -18,6 +18,8 @@ import java.util.Objects;
  * 
  * Class representing the game world, including the locations of all Actors, the
  * player, and the playing grid.
+ *
+ * Modified by: Ng Jiunn Chieh 33590850
  */
 public class World {
 	protected Display display;
@@ -122,6 +124,8 @@ public class World {
 			actions.add(item.allowableActions(actor));
 			// Game rule. If you're carrying it, you can drop it.
 			actions.add(item.getDropAction(actor));
+			// for each item that has ranged capabilities
+			actions.add(item.allowableRangedActions(actor, here));
 		}
 
 		// Game rule. Allows the actor to interact with current ground

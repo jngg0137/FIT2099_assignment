@@ -8,7 +8,13 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.FancyGroundFactory;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.World;
-import game.actors.*;
+import game.actors.FurnaceGolem;
+import game.actors.ManFly;
+import game.actors.Player;
+import game.actors.Spirit;
+import game.ammunition.Bolt;
+import game.ammunition.BurningBolt;
+import game.ammunition.PoisonBolt;
 import game.grounds.*;
 import game.consumables.FlaskOfHealing;
 import game.consumables.FlaskOfRejuvenation;
@@ -19,6 +25,7 @@ import game.items.Spawner;
 import game.weaponarts.LifeSteal;
 import game.weaponarts.Memento;
 import game.weaponarts.QuickStep;
+import game.weapons.Crossbow;
 import game.weapons.GreatKnife;
 import game.weapons.ShortSword;
 
@@ -139,6 +146,8 @@ public class Application {
         GreatKnife greatKnifeWithQuickstep = new GreatKnife("Great Knife (Quickstep)", '†', 25, "slashes", 80,5, new QuickStep());
         GreatKnife greatKnifeWithMemento = new GreatKnife("Great Knife (Memento)", '†', 25, "slashes", 80, 5, new Memento());
         ShortSword shortSwordWithQuickstep = new ShortSword("Shortsword (Quickstep)", '!', 30, "stabs", 85, 10,new QuickStep());
+        Crossbow crossbow = new Crossbow("Crossbow",'I',0,"shoots",50,null, 7);
+
 
         // Add player to the game map
         world.addPlayer(player, gameMap.at(7, 4));
@@ -158,6 +167,10 @@ public class Application {
         gameMap.at(7,8).addItem(shortSwordWithQuickstep);
         gameMap.at(8,8).addItem(greatKnifeWithLifesteal);
         gameMap.at(9,8).addItem(greatKnifeWithQuickstep);
+        gameMap.at(10,9).addItem(crossbow);
+        gameMap.at(11,8).addItem(new BurningBolt());
+        gameMap.at(12,8).addItem(new PoisonBolt());
+        gameMap.at(13,8).addItem(new Bolt());
         gameMap.at(10,8).addItem(greatKnifeWithMemento);
 
         // Single Gate with multiple destinations
