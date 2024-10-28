@@ -15,6 +15,7 @@ import java.util.Random;
 /**
  * Class representing items that can be used as a ranged weapon
  *
+ * @author Ng Jiunn Chieh 33590850
  */
 public abstract class RangedWeaponItem extends Item implements Weapon {
     private static final float DEFAULT_DAMAGE_MULTIPLIER = 1.0f;

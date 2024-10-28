@@ -8,6 +8,11 @@ import game.effects.Poison;
 
 import java.util.List;
 
+/**
+ * Class that represents the poison bolt item
+ *
+ * @author Ng Jiunn Chieh 33590850
+ */
 public class PoisonBolt extends Ammunition{
     private final int damage = 80;
     private final int effectDuration = 20;

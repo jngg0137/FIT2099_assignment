@@ -3,6 +3,11 @@ package game.items;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
 
+/**
+ * Interface for items that can be loaded with other items
+ *
+ * @author Ng Jiunn Chieh 33590850
+ */
 public interface ReloadableItem {
     /**
      * Load ammunition into the item

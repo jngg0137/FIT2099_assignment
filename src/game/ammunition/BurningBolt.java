@@ -10,6 +10,11 @@ import game.grounds.Fire;
 
 import java.util.List;
 
+/**
+ * Class that represents burning bolt item
+ *
+ * @author Ng Jiunn Chieh 33590850
+ */
 public class BurningBolt extends Ammunition{
     private final int damage = 80;
 

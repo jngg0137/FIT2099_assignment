@@ -11,6 +11,8 @@ import java.util.*;
 /**
  * Class representing a location in the game map.  This includes keeping track of exits,
  * character representation, terrain type, and other game data.
+ *
+ * Modified by: Ng Jiunn Chieh 33590850
  */
 public class Location implements Printable {
 

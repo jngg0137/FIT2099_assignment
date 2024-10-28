@@ -6,6 +6,12 @@ import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.items.ReloadableItem;
 
+/**
+ * Represents the action to load an item with another item that is considered
+ * the ammunition it uses
+ *
+ * @author Ng Jiunn Chieh 33590850
+ */
 public class ReloadAction extends Action {
     private Item ammunition;
     private ReloadableItem reloadableItem;

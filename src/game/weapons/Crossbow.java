@@ -14,7 +14,11 @@ import game.weaponarts.WeaponArt;
 
 import java.util.Random;
 
-
+/**
+ * Class that represents the crossbow ranged weapon
+ *
+ * @author Ng Jiunn Chieh 33590850
+ */
 public class Crossbow extends RangedWeaponItem implements ReloadableItem {
     private Item bolt = null;
 
