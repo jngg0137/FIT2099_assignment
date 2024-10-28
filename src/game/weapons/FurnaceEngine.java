@@ -6,7 +6,6 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import game.grounds.Fire;
 import game.actors.Ability;
-import game.actors.FurnaceGolem;
 
 
 /**
@@ -42,7 +41,7 @@ public class FurnaceEngine extends WeaponItem {
 
             // Deal explosion damage to any actor nearby
             Actor adjacentActor = adjacentLocation.getActor();
-            if (adjacentActor != null && !(adjacentActor instanceof FurnaceGolem)) {
+            if (adjacentActor != null) {
                 adjacentActor.hurt(50);
                 display.println(adjacentActor + " takes 50 explosion damage!");
             }
