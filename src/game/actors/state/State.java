@@ -4,6 +4,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 
 /**
  * Class representing a state of a target Actor taken at a certain time
+ * @author Muhammad Hafiz Idlan Bin Hakimi (33589690)
  */
 public abstract class State {
 

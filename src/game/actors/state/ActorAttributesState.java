@@ -10,6 +10,7 @@ import java.util.Map;
 
 /**
  * Class representing the state of the target actor's attributes taken at a certain time
+ * @author Muhammad Hafiz Idlan Bin Hakimi (33589690)
  */
 public class ActorAttributesState extends State {
 
