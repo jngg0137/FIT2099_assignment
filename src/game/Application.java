@@ -131,7 +131,7 @@ public class Application {
         GreatKnife greatKnifeWithLifesteal = new GreatKnife("Great Knife (LifeSteal)", '†', 25, "slashes", 80, 5, new LifeSteal());
         GreatKnife greatKnifeWithQuickstep = new GreatKnife("Great Knife (Quickstep)", '†', 25, "slashes", 80,5, new QuickStep());
         ShortSword shortSwordWithQuickstep = new ShortSword("Shortsword (Quickstep)", '!', 30, "stabs", 85, 10,new QuickStep());
-        Crossbow crossbow = new Crossbow("Crossbow",'I',0,"shoots",50,null, 5);
+        Crossbow crossbow = new Crossbow("Crossbow",'I',0,"shoots",50,null, 7);
 
 
         // Add player to the game map
