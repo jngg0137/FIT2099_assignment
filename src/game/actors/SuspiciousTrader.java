@@ -9,12 +9,9 @@ import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import game.actions.TradeAction;
-import game.items.RemembranceOfDancingLion;
-import game.items.RemembranceOfFurnaceGolem;
 import game.weapons.DivineBeastHead;
 import game.weapons.FurnaceEngine;
 import game.effects.AttributeRestoring;
-import game.actors.Player;
 import edu.monash.fit2099.engine.actors.attributes.BaseActorAttributes;
 import edu.monash.fit2099.engine.items.Item;
 
@@ -44,12 +41,12 @@ public class SuspiciousTrader extends Actor {
         if (player.hasItem(remembrance)) {
             player.removeItemFromInventory(remembrance);
 
-            if (remembrance instanceof RemembranceOfDancingLion) {
+            if (remembrance.hasCapability(Ability.TRADE_DIVINE_BEAST_HEAD)) {
                 player.addItemToInventory(new DivineBeastHead());
                 player.increaseMaxHealth(50);
                 player.increaseMaxMana(100);
                 return "You traded the Remembrance of the Dancing Lion for the Divine Beast Head!";
-            } else if (remembrance instanceof RemembranceOfFurnaceGolem) {
+            } else if (remembrance.hasCapability(Ability.TRADE_FURNACE_ENGINE)) {
                 player.addItemToInventory(new FurnaceEngine());
                 player.addStatusEffect(new AttributeRestoring(BaseActorAttributes.HEALTH, RESTORING_DURATION, HEALTH_POINTS));
                 return "You traded the Remembrance of the Furnace Golem for the Furnace Engine! Health will be restored over time.";
@@ -77,7 +74,7 @@ public class SuspiciousTrader extends Actor {
             Actor nearbyActor = exit.getDestination().getActor();
 
             // Check if the nearby actor is the player and add TradeAction if so
-            if (nearbyActor instanceof Player) {
+            if (nearbyActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
                 return new TradeAction((Player) nearbyActor, this);
             }
         }

@@ -17,5 +17,17 @@ public enum Ability {
     /**
      * Indicates whether an actor can be poisoned
      */
-    IMMUNE_TO_POISON
+    IMMUNE_TO_POISON,
+    /**
+     * Indicates whether an item is used as a trading item
+     */
+    TRADE_ITEM,
+    /**
+     * Indicates whether an item can be traded for furnace engine
+     */
+    TRADE_FURNACE_ENGINE,
+    /**
+     * Indicates whether an item can be traded for divine beast head
+     */
+    TRADE_DIVINE_BEAST_HEAD
 }

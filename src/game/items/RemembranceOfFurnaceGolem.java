@@ -1,6 +1,7 @@
 package game.items;
 
 import edu.monash.fit2099.engine.items.Item;
+import game.actors.Ability;
 
 /**
  * Represents the Remembrance dropped by Furnace Golem.
@@ -9,5 +10,7 @@ import edu.monash.fit2099.engine.items.Item;
 public class RemembranceOfFurnaceGolem extends Item {
     public RemembranceOfFurnaceGolem() {
         super("Remembrance of the Furnace Golem", '*', true);
+        this.addCapability(Ability.TRADE_FURNACE_ENGINE);
+        this.addCapability(Ability.TRADE_ITEM);
     }
 }

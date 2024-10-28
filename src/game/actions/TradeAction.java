@@ -4,10 +4,9 @@ import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
+import game.actors.Ability;
 import game.actors.Player;
 import game.actors.SuspiciousTrader;
-import game.items.RemembranceOfDancingLion;
-import game.items.RemembranceOfFurnaceGolem;
 
 import java.util.List;
 
@@ -46,7 +45,7 @@ public class TradeAction extends Action {
 
         for (Item item : inventory) {
             // Check for specific remembrance items in player's inventory and trade
-            if (item instanceof RemembranceOfDancingLion || item instanceof RemembranceOfFurnaceGolem) {
+            if (item.hasCapability(Ability.TRADE_ITEM)) {
                 return trader.trade(item, player);
             }
         }
