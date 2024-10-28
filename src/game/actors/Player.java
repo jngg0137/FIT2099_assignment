@@ -8,6 +8,7 @@ import edu.monash.fit2099.engine.actors.attributes.BaseActorAttributes;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
+import game.actors.state.CopyableState;
 import game.weapons.BareFist;
 
 /**
@@ -34,6 +35,7 @@ public class Player extends Actor {
         this.addAttribute(BaseActorAttributes.MANA, new BaseActorAttribute(100));
         this.addAttribute(ExtraActorAttributes.STRENGTH, new BaseActorAttribute(5));
         this.addCapability(Ability.ENTER_FLOOR);
+        this.addCapability(CopyableState.ATTRIBUTES);
         this.setIntrinsicWeapon(new BareFist());
     }
 
