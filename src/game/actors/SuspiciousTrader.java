@@ -73,9 +73,11 @@ public class SuspiciousTrader extends Actor {
         for (Exit exit : traderLocation.getExits()) {
             Actor nearbyActor = exit.getDestination().getActor();
 
-            // Check if the nearby actor is the player and add TradeAction if so
-            if (nearbyActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
-                return new TradeAction((Player) nearbyActor, this);
+            if (nearbyActor != null) {
+                // Check if the nearby actor is the player and add TradeAction if so
+                if (nearbyActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
+                    return new TradeAction((Player) nearbyActor, this);
+                }
             }
         }
         return new DoNothingAction();
