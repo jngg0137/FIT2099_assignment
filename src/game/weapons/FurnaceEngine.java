@@ -13,7 +13,7 @@ import edu.monash.fit2099.engine.weapons.Weapon;
  * @author Liew Zhe Xing 32619472
  */
 
-public class FurnaceEngine extends WeaponItem {
+public class FurnaceEngine extends WeaponItem{
     Weapon furnaceGolemLeg = new FurnaceGolemLeg();
 
     public FurnaceEngine() {
