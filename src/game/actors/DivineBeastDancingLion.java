@@ -47,7 +47,7 @@ public class DivineBeastDancingLion extends Actor {
      * @param beluratMap The GameMap representing Belurat, Tower Settlement
      */
     public DivineBeastDancingLion(GameMap beluratMap) {
-        super("Divine Beast Dancing Lion", 'S', 100);
+        super("Divine Beast Dancing Lion", 'S', 10000);
         this.currentDivinePower = new WindDivinePower();
         this.addCapability(Status.HOSTILE_TO_ENEMY);
         behaviours.put(10, new WanderBehaviour());
