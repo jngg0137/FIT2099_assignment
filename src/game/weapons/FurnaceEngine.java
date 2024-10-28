@@ -1,6 +1,7 @@
 package game.weapons;
 
 import edu.monash.fit2099.engine.actors.Actor;
+import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import game.grounds.Fire;
@@ -16,6 +17,7 @@ import game.actors.FurnaceGolem;
  */
 
 public class FurnaceEngine extends WeaponItem {
+    Display display = new Display();
 
     public FurnaceEngine() {
         super("Furnace Engine", 'E', 75, "stomps", 5, null);
@@ -32,7 +34,7 @@ public class FurnaceEngine extends WeaponItem {
     }
 
     private void triggerExplosion(Location location, GameMap map) {
-        System.out.println("Explosion triggered at " + location);
+        display.println("Explosion triggered at " + location);
 
         // Loop through all adjacent locations
         for (var exit : location.getExits()) {
@@ -42,13 +44,13 @@ public class FurnaceEngine extends WeaponItem {
             Actor adjacentActor = adjacentLocation.getActor();
             if (adjacentActor != null && !(adjacentActor instanceof FurnaceGolem)) {
                 adjacentActor.hurt(50);
-                System.out.println(adjacentActor + " takes 50 explosion damage!");
+                display.println(adjacentActor + " takes 50 explosion damage!");
             }
 
             // Set burnable ground on fire
             if (!adjacentLocation.getGround().hasCapability(Ability.IMMUNE_TO_BURNING)) {
                 adjacentLocation.setGround(new Fire(5, adjacentLocation.getGround()));
-                System.out.println("The ground at " + adjacentLocation + " is now burning!");
+                display.println("The ground at " + adjacentLocation + " is now burning!");
             }
         }
     }
