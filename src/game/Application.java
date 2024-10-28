@@ -32,7 +32,7 @@ import game.actors.SuspiciousTrader;
  * The main class to start the game.
  * Created by:
  * @author Adrian Kristanto
- * Modified by:Muhammad Hafiz Idlan Bin Hakimi
+ * Modified by: Muhammad Hafiz Idlan Bin Hakimi
  */
 public class Application {
 
