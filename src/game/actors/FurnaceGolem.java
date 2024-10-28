@@ -7,11 +7,15 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.actors.Behaviour;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
+import game.actors.Ability;
+import game.actors.Status;
 import game.weapons.FurnaceGolemLeg;
 import game.behaviours.WanderBehaviour;
 import game.actions.AttackAction;
 import game.behaviours.AttackBehaviour;
 import game.behaviours.FollowBehaviour;
+import edu.monash.fit2099.engine.positions.Location;
+import game.items.RemembranceOfFurnaceGolem;
 
 import java.util.Map;
 import java.util.TreeMap;
@@ -22,6 +26,7 @@ import java.util.TreeMap;
  * @author Adrian Kristanto
  * Modified by : Muhammad Hafiz Idlan Bin Hakimi
  *               Ng Jiunn Chieh 33590850
+ *               Liew Zhe Xing 32619472
  */
 public class FurnaceGolem extends Actor {
     private Map<Integer, Behaviour> behaviours = new TreeMap<>();
@@ -29,11 +34,13 @@ public class FurnaceGolem extends Actor {
     private final int attackBehaviourPriority = 1;
     private final int followBehaviourPriority = 2;
 
+    private Display display = new Display();
+
     /**
      * Constructor for the FurnaceGolem class
      */
     public FurnaceGolem() {
-        super("Furnace Golem", 'A', 1000);
+        super("Furnace Golem", 'A', 10);
         this.behaviours.put(wanderBehaviourPriority, new WanderBehaviour());
         this.setIntrinsicWeapon(new FurnaceGolemLeg());
         this.addCapability(Ability.IMMUNE_TO_BURNING);
@@ -49,6 +56,10 @@ public class FurnaceGolem extends Actor {
      */
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+        if (!this.isConscious()) {
+            return new DoNothingAction();  // Return a DoNothingAction if unconscious
+        }
+
         for (Behaviour behaviour : behaviours.values()) {
             Action action = behaviour.getAction(this, map);
             if(action != null)
@@ -56,6 +67,8 @@ public class FurnaceGolem extends Actor {
         }
         return new DoNothingAction();
     }
+
+
 
     /**
      * Adds behaviours to the Furnace Golem and creates actions that an actor may perform to the Furnace Golem itself
@@ -74,4 +87,22 @@ public class FurnaceGolem extends Actor {
         }
         return actions;
     }
+
+    @Override
+    public String unconscious(GameMap map) {
+        Location golemLocation = map.locationOf(this);
+
+        // Drop the Remembrance of the Furnace Golem at the golem's location
+        golemLocation.addItem(new RemembranceOfFurnaceGolem());
+
+        display.println(this + " has been defeated and dropped the Remembrance of the Furnace Golem!");
+
+        return super.unconscious(map);
+    }
+
+    @Override
+    public String unconscious(Actor actor, GameMap map) {
+        return unconscious(map);
+    }
+
 }

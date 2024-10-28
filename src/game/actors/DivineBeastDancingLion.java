@@ -17,16 +17,19 @@ import game.divinepowers.DivinePower;
 import game.divinepowers.WindDivinePower;
 import game.items.GateItem;
 import game.weapons.LionBite;
+import game.items.RemembranceOfDancingLion;
 
 import java.util.Map;
 import java.util.Random;
 import java.util.TreeMap;
 
 
+
 /**
  * Class representing the Divine Beast Dancing Lion boss.
  *
  * @author Mohamad Kassem Alsabbagh
+ * Modified by : Liew Zhe Xing 32619472
  */
 public class DivineBeastDancingLion extends Actor {
 
@@ -44,7 +47,7 @@ public class DivineBeastDancingLion extends Actor {
      * @param beluratMap The GameMap representing Belurat, Tower Settlement
      */
     public DivineBeastDancingLion(GameMap beluratMap) {
-        super("Divine Beast Dancing Lion", 'S', 10000);
+        super("Divine Beast Dancing Lion", 'S', 100);
         this.currentDivinePower = new WindDivinePower();
         this.addCapability(Status.HOSTILE_TO_ENEMY);
         behaviours.put(10, new WanderBehaviour());
@@ -63,7 +66,17 @@ public class DivineBeastDancingLion extends Actor {
      */
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
-        // Check if target is still valid
+        if (!this.isConscious()) {
+            return new DoNothingAction();  // Return a DoNothingAction if unconscious
+        }
+
+        if (target != null && (!target.isConscious() || !map.contains(target))) {
+            target = null;
+            behaviours.remove(1); // Remove follow behaviour
+            behaviours.put(10, new WanderBehaviour()); // Add wander behaviour
+        }
+
+
         if (target != null && (!target.isConscious() || !map.contains(target))) {
             target = null;
             behaviours.remove(1); // Remove follow behaviour
@@ -165,10 +178,15 @@ public class DivineBeastDancingLion extends Actor {
         // Place the gate at the boss's location
         bossLocation.addItem(gateToBelurat);
 
+        // Drop the Remembrance of the Dancing Lion at the boss's location
+        bossLocation.addItem(new RemembranceOfDancingLion());
+
         display.println(this + " has been defeated! A gate back to Belurat has appeared.");
+        display.println(this + " dropped the Remembrance of the Dancing Lion.");
 
         return super.unconscious(map);
     }
+
 
 
 }

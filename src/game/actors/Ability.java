@@ -22,4 +22,16 @@ public enum Ability {
      * Indicates whether an item can be loaded into an item that uses bolts
      */
     LOADABLE_BOLTS,
+    /**
+     * Indicates whether an item is used as a trading item
+     */
+    TRADE_ITEM,
+    /**
+     * Indicates whether an item can be traded for furnace engine
+     */
+    TRADE_FURNACE_ENGINE,
+    /**
+     * Indicates whether an item can be traded for divine beast head
+     */
+    TRADE_DIVINE_BEAST_HEAD
 }

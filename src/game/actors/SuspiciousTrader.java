@@ -1,0 +1,95 @@
+package game.actors;
+
+import edu.monash.fit2099.engine.actions.Action;
+import edu.monash.fit2099.engine.actions.ActionList;
+import edu.monash.fit2099.engine.actions.DoNothingAction;
+import edu.monash.fit2099.engine.actors.Actor;
+import edu.monash.fit2099.engine.actors.attributes.ActorAttributeOperations;
+import edu.monash.fit2099.engine.displays.Display;
+import edu.monash.fit2099.engine.positions.Exit;
+import edu.monash.fit2099.engine.positions.GameMap;
+import edu.monash.fit2099.engine.positions.Location;
+import game.actions.TradeAction;
+import game.weapons.DivineBeastHead;
+import game.weapons.FurnaceEngine;
+import game.effects.AttributeRestoring;
+import edu.monash.fit2099.engine.actors.attributes.BaseActorAttributes;
+import edu.monash.fit2099.engine.items.Item;
+
+/**
+ * SuspiciousTrader class, providing trade options to the player.
+ * @author Liew Zhe Xing 32619472
+ */
+public class SuspiciousTrader extends Actor {
+    private static final int HEALTH_POINTS_FURNACE_ENGINE = 30;
+    private static final int RESTORING_DURATION_FURNACE_ENGINE = 5;
+    private static final int HEALTH_POINTS_DIVINE_BEAST_HEAD = 50;
+    private static final int MANA_POINTS_DIVINE_BEAST_HEAD = 100;
+
+    /**
+     * Constructor for SuspiciousTrader
+     */
+    public SuspiciousTrader() {
+        super("Suspicious Trader", 'ඞ', 1000);
+        this.addCapability(Status.NON_ATTACKABLE);
+    }
+
+    /**
+     * Trade items based on the type of remembrance provided by the player.
+     * @param remembrance item given by player
+     * @param player      player interacting with trader
+     * @return a string indicating trade outcome
+     */
+    public String trade(Item remembrance, Player player) {
+        if (player.hasItem(remembrance)) {
+            player.removeItemFromInventory(remembrance);
+
+            if (remembrance.hasCapability(Ability.TRADE_DIVINE_BEAST_HEAD)) {
+                player.addItemToInventory(new DivineBeastHead());
+                int currentHealth = player.getAttribute(BaseActorAttributes.HEALTH);
+                player.modifyAttributeMaximum(BaseActorAttributes.HEALTH, ActorAttributeOperations.INCREASE,HEALTH_POINTS_DIVINE_BEAST_HEAD);
+                player.modifyAttribute(BaseActorAttributes.HEALTH,ActorAttributeOperations.UPDATE,currentHealth);
+                player.heal(HEALTH_POINTS_DIVINE_BEAST_HEAD);
+
+                int currentMana = player.getAttribute(BaseActorAttributes.MANA);
+                player.modifyAttributeMaximum(BaseActorAttributes.MANA,ActorAttributeOperations.INCREASE,MANA_POINTS_DIVINE_BEAST_HEAD);
+                player.modifyAttribute(BaseActorAttributes.MANA,ActorAttributeOperations.UPDATE,currentMana);
+                player.modifyAttribute(BaseActorAttributes.MANA,ActorAttributeOperations.INCREASE,MANA_POINTS_DIVINE_BEAST_HEAD);
+                return "You traded the Remembrance of the Dancing Lion for the Divine Beast Head!";
+            } else if (remembrance.hasCapability(Ability.TRADE_FURNACE_ENGINE)) {
+                player.addItemToInventory(new FurnaceEngine());
+                player.addStatusEffect(new AttributeRestoring(BaseActorAttributes.HEALTH, RESTORING_DURATION_FURNACE_ENGINE, HEALTH_POINTS_FURNACE_ENGINE));
+                return "You traded the Remembrance of the Furnace Golem for the Furnace Engine! Health will be restored over time.";
+            } else {
+                return "The trader cannot trade this item.";
+            }
+        } else {
+            return "You don't have the required item for this trade.";
+        }
+    }
+
+    /**
+     * Override playTurn to handle trade interactions if the player is nearby.
+     * @param actions    list of possible actions
+     * @param lastAction last action taken
+     * @param map        current game map
+     * @param display    display for messages
+     * @return Action to perform
+     */
+    @Override
+    public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+        Location traderLocation = map.locationOf(this);
+
+        for (Exit exit : traderLocation.getExits()) {
+            Actor nearbyActor = exit.getDestination().getActor();
+
+            if (nearbyActor != null) {
+                // Check if the nearby actor is the player and add TradeAction if so
+                if (nearbyActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
+                    return new TradeAction((Player) nearbyActor, this);
+                }
+            }
+        }
+        return new DoNothingAction();
+    }
+}
