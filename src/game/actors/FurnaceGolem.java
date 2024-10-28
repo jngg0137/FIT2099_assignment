@@ -40,7 +40,7 @@ public class FurnaceGolem extends Actor {
      * Constructor for the FurnaceGolem class
      */
     public FurnaceGolem() {
-        super("Furnace Golem", 'A', 10);
+        super("Furnace Golem", 'A', 1000);
         this.behaviours.put(wanderBehaviourPriority, new WanderBehaviour());
         this.setIntrinsicWeapon(new FurnaceGolemLeg());
         this.addCapability(Ability.IMMUNE_TO_BURNING);
